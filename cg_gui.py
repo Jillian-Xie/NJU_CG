@@ -14,8 +14,9 @@ from PyQt5.QtWidgets import (
     QListWidget,
     QHBoxLayout,
     QWidget,
+    QMessageBox,
     QStyleOptionGraphicsItem)
-from PyQt5.QtGui import QPainter, QMouseEvent, QColor
+from PyQt5.QtGui import QPainter, QMouseEvent, QColor, QIcon
 from PyQt5.QtCore import QRectF
 
 
@@ -23,6 +24,7 @@ class MyCanvas(QGraphicsView):
     """
     画布窗体类，继承自QGraphicsView，采用QGraphicsView、QGraphicsScene、QGraphicsItem的绘图框架
     """
+
     def __init__(self, *args):
         super().__init__(*args)
         self.main_window = None
@@ -82,7 +84,7 @@ class MyCanvas(QGraphicsView):
         y = int(pos.y())
         if self.status == 'line':
             self.temp_item.p_list[1] = [x, y]
-        #elif self.status == 'polygon':
+        # elif self.status == 'polygon':
 
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
@@ -92,7 +94,7 @@ class MyCanvas(QGraphicsView):
             self.item_dict[self.temp_id] = self.temp_item
             self.list_widget.addItem(self.temp_id)
             self.finish_draw()
-        #elif self.status == 'polygon':
+        # elif self.status == 'polygon':
 
         super().mouseReleaseEvent(event)
 
@@ -101,6 +103,7 @@ class MyItem(QGraphicsItem):
     """
     自定义图元类，继承自QGraphicsItem
     """
+
     def __init__(self, item_id: str, item_type: str, p_list: list, algorithm: str = '', parent: QGraphicsItem = None):
         """
 
@@ -111,9 +114,9 @@ class MyItem(QGraphicsItem):
         :param parent:
         """
         super().__init__(parent)
-        self.id = item_id           # 图元ID
+        self.id = item_id  # 图元ID
         self.item_type = item_type  # 图元类型，'line'、'polygon'、'ellipse'、'curve'等
-        self.p_list = p_list        # 图元参数
+        self.p_list = p_list  # 图元参数
         self.algorithm = algorithm  # 绘制算法，'DDA'、'Bresenham'、'Bezier'、'B-spline'等
         self.selected = False
 
@@ -153,6 +156,7 @@ class MainWindow(QMainWindow):
     """
     主窗口类
     """
+
     def __init__(self):
         super().__init__()
         self.item_cnt = 0
@@ -213,7 +217,18 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
         self.statusBar().showMessage('空闲')
         self.resize(600, 600)
-        self.setWindowTitle('CG Demo')
+        self.setWindowTitle('CG Project')
+
+        # 设置窗口图标
+        self.setWindowIcon(QIcon('../picture/画笔.png'))
+
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, '关闭确认', "确定要退出程序吗?",
+                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
 
     def get_id(self):
         _id = str(self.item_cnt)

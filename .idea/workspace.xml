@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="" />
+    <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cg_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cg_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_gui.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,22 +18,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="134" column="44" selection-start-line="134" selection-start-column="44" selection-end-line="134" selection-end-column="44" />
+            <state relative-caret-position="302">
+              <caret line="140" column="18" lean-forward="true" selection-start-line="140" selection-start-column="18" selection-end-line="140" selection-end-column="18" />
               <folding>
-                <element signature="e#114#4173#0" />
-                <element signature="e#569#797#0" />
-                <element signature="e#687#797#0" />
-                <element signature="e#836#1961#0" />
-                <element signature="e#2006#4153#0" />
-                <element signature="e#2031#2115#0" />
-                <element signature="e#2151#2217#0" />
-                <element signature="e#2253#2328#0" />
-                <element signature="e#2365#2441#0" />
-                <element signature="e#2560#2874#0" />
-                <element signature="e#2920#3338#0" />
-                <element signature="e#3333#3647#0" />
-                <element signature="e#3689#4061#0" />
+                <element signature="e#114#4024#0" />
               </folding>
             </state>
           </provider>
@@ -37,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cg_cli.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
+            <state relative-caret-position="332">
+              <caret line="40" column="52" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
@@ -58,11 +51,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="142" column="40" lean-forward="true" selection-start-line="142" selection-start-column="40" selection-end-line="142" selection-end-column="40" />
+            <state relative-caret-position="-272">
+              <caret line="176" column="16" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="16" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
+                <element signature="e#446#3018#0" />
+                <element signature="e#3054#4899#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16">
+              <caret line="6005" column="6" selection-start-line="6005" selection-start-column="6" selection-end-line="6005" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -83,7 +87,11 @@
       <find>line_naive_act</find>
       <find>get_id</find>
       <find>line</find>
+      <find>draw_polygon</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -91,27 +99,43 @@
         <option value="$PROJECT_DIR$/hello.py" />
         <option value="$PROJECT_DIR$/other_code.py" />
         <option value="$PROJECT_DIR$/cg_algorithms.py" />
+        <option value="$PROJECT_DIR$/cg_cli.py" />
         <option value="$PROJECT_DIR$/cg_gui.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="855" />
-    <option name="width" value="1076" />
-    <option name="height" value="1032" />
+    <option name="x" value="924" />
+    <option name="width" value="1038" />
+    <option name="height" value="1031" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/cg_gui.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -171,30 +195,32 @@
       <workItem from="1601463600809" duration="7230000" />
       <workItem from="1601475412994" duration="192000" />
       <workItem from="1601686860425" duration="7460000" />
-      <workItem from="1601720503516" duration="9094000" />
+      <workItem from="1601720503516" duration="12634000" />
+      <workItem from="1601807129416" duration="5623000" />
+      <workItem from="1601885002137" duration="3805000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34425000" />
+    <option name="totallyTimeSpent" value="47393000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="570" y="0" width="717" height="688" extended-state="0" />
+    <frame x="616" y="0" width="692" height="687" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.35135135" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.35015774" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32315978" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32072073" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.39856374" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32978722" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.21005386" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.20323741" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016892" side_tool="true" weight="0.39856374" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -210,6 +236,46 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -220,16 +286,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>241</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>120</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cg_gui.py</url>
           <line>43</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
@@ -237,7 +293,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1601729733740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1601889706750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
@@ -250,6 +306,13 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hello.py" />
+    <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtCore.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="6286" column="8" selection-start-line="6286" selection-start-column="8" selection-end-line="6286" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/other_code.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
@@ -259,49 +322,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="134" column="44" selection-start-line="134" selection-start-column="44" selection-end-line="134" selection-end-column="44" />
+        <state relative-caret-position="302">
+          <caret line="140" column="18" lean-forward="true" selection-start-line="140" selection-start-column="18" selection-end-line="140" selection-end-column="18" />
           <folding>
-            <element signature="e#114#4173#0" />
-            <element signature="e#569#797#0" />
-            <element signature="e#687#797#0" />
-            <element signature="e#836#1961#0" />
-            <element signature="e#2006#4153#0" />
-            <element signature="e#2031#2115#0" />
-            <element signature="e#2151#2217#0" />
-            <element signature="e#2253#2328#0" />
-            <element signature="e#2365#2441#0" />
-            <element signature="e#2560#2874#0" />
-            <element signature="e#2920#3338#0" />
-            <element signature="e#3333#3647#0" />
-            <element signature="e#3689#4061#0" />
+            <element signature="e#114#4024#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_cli.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
+        <state relative-caret-position="332">
+          <caret line="40" column="52" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtCore.pyi">
+    <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
-          <caret line="6286" column="8" selection-start-line="6286" selection-start-column="8" selection-end-line="6286" selection-end-column="8" />
+          <caret line="6005" column="6" selection-start-line="6005" selection-start-column="6" selection-end-line="6005" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="142" column="40" lean-forward="true" selection-start-line="142" selection-start-column="40" selection-end-line="142" selection-end-column="40" />
+        <state relative-caret-position="-272">
+          <caret line="176" column="16" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="16" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
+            <element signature="e#446#3018#0" />
+            <element signature="e#3054#4899#0" />
           </folding>
         </state>
       </provider>
