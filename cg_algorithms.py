@@ -142,6 +142,19 @@ def draw_polygon(p_list, algorithm):
         result += line
     return result
 
+def my_draw_polygon(p_list, algorithm):
+    """绘制多边形
+
+    :param p_list: (list of list of int: [[x0, y0], [x1, y1], [x2, y2], ...]) 多边形的顶点坐标列表
+    :param algorithm: (string) 绘制使用的算法，包括'DDA'和'Bresenham'
+    :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 绘制结果的像素点坐标列表
+    """
+    result = []
+    for i in range(len(p_list)-1):
+        line = draw_line([p_list[i], p_list[i+1]], algorithm)
+        result += line
+    return result
+
 
 def draw_ellipse(p_list):
     """绘制椭圆（采用中点圆生成算法）

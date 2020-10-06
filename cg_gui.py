@@ -48,6 +48,7 @@ class MyCanvas(QGraphicsView):
         self.temp_id = item_id
 
     def finish_draw(self):
+        self.temp_item = None
         self.temp_id = self.main_window.get_id()
 
     def clear_selection(self):
@@ -73,10 +74,25 @@ class MyCanvas(QGraphicsView):
         if self.status == 'line':
             self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
-        # elif self.status == 'polygon':
-
+        elif self.status == 'polygon':
+            if self.temp_item is None:
+                self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+                self.scene().addItem(self.temp_item)
+            else:
+                self.temp_item.p_list.append([x, y])
         self.updateScene([self.sceneRect()])
         super().mousePressEvent(event)
+
+    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
+        if self.status == 'polygon':
+            if self.temp_item is not None:
+                self.temp_item.p_list.append(self.temp_item.p_list[0])
+                self.item_dict[self.temp_id] = self.temp_item
+                self.list_widget.addItem(self.temp_id)
+                self.finish_draw()
+        self.updateScene([self.sceneRect()])
+        super().mouseDoubleClickEvent(event)
+
 
     def mouseMoveEvent(self, event: QMouseEvent) -> None:
         pos = self.mapToScene(event.localPos().toPoint())
@@ -84,8 +100,8 @@ class MyCanvas(QGraphicsView):
         y = int(pos.y())
         if self.status == 'line':
             self.temp_item.p_list[1] = [x, y]
-        # elif self.status == 'polygon':
-
+        elif self.status == 'polygon':
+            self.temp_item.p_list[-1] = [x, y]
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
 
@@ -94,7 +110,6 @@ class MyCanvas(QGraphicsView):
             self.item_dict[self.temp_id] = self.temp_item
             self.list_widget.addItem(self.temp_id)
             self.finish_draw()
-        # elif self.status == 'polygon':
 
         super().mouseReleaseEvent(event)
 
@@ -124,7 +139,7 @@ class MyItem(QGraphicsItem):
         if self.item_type == 'line':
             item_pixels = alg.draw_line(self.p_list, self.algorithm)
         elif self.item_type == 'polygon':
-            item_pixels = alg.draw_polygon(self.p_list, self.algorithm)
+            item_pixels = alg.my_draw_polygon(self.p_list, self.algorithm)
         elif self.item_type == 'ellipse':
             pass
         elif self.item_type == 'curve':
@@ -145,7 +160,13 @@ class MyItem(QGraphicsItem):
             h = max(y0, y1) - y
             return QRectF(x - 1, y - 1, w + 2, h + 2)
         elif self.item_type == 'polygon':
-            pass
+            x_list = [x[0] for x in self.p_list]
+            y_list = [y[1] for y in self.p_list]
+            x = min(x_list)
+            y = min(y_list)
+            w = max(x_list) - x
+            h = max(y_list) - y
+            return QRectF(x - 1, y - 1, w + 2, h + 2)
         elif self.item_type == 'ellipse':
             pass
         elif self.item_type == 'curve':
@@ -223,7 +244,7 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon('../picture/画笔.png'))
 
     def closeEvent(self, event):
-        reply = QMessageBox.question(self, '关闭确认', "确定要退出程序吗?",
+        reply = QMessageBox.question(self, "确认", "确定要退出程序吗?",
                                      QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
             event.accept()
