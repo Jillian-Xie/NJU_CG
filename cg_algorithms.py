@@ -162,6 +162,46 @@ def draw_ellipse(p_list):
     :param p_list: (list of list of int: [[x0, y0], [x1, y1]]) 椭圆的矩形包围框左上角和右下角顶点坐标
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 绘制结果的像素点坐标列表
     """
+    x0, y0 = p_list[0]
+    x1, y1 = p_list[1]
+    a = (x1 - x0) / 2
+    b = (y0 - y1) / 2
+    xc = (x0 + x1) / 2
+    yc = (y0 + y1) / 2
+    b2 = pow(b, 2)
+    a2 = pow(a, 2)
+    d = b2 - a2 * b + a2 / 4
+    x = 0
+    y = b
+    result = []
+    while a2 * y > b2 * x:
+        result.append([x, y])  # 3
+        result.append([x, -y])
+        result.append([-x, y])
+        result.append([-x, -y])
+        if d < 0:  # 4
+            d = d + b2 * (2 * x + 3)
+        else:
+            d = d + b2 * (2 * x + 3) + a2 * (-2 * y + 2)
+            y = y - 1
+        x = x + 1
+    d = b2 * pow((x + 0.5), 2) + a2 * pow((y - 1), 2) - a2 * b2
+    while y >= 0:
+        result.append([x, y])
+        result.append([x, -y])
+        result.append([-x, y])
+        result.append([-x, -y])
+        if d <= 0:
+            d = d - 2 * a2 * y + 3 * a2
+            x = x + 1
+        else:
+            d = d + 2 * b2 * x - 2 * a2 * y + 2 * b2 + 3 * a2
+        y = y - 1
+
+    for p in p_list:
+        p[0] += xc
+        p[1] += yc
+
     pass
 
 

@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="85" column="13" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
+            <state relative-caret-position="273">
+              <caret line="165" column="22" lean-forward="true" selection-start-line="165" selection-start-column="22" selection-end-line="165" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -44,7 +44,11 @@
       <find>start</find>
       <find>boundingRect</find>
       <find>paint</find>
+      <find>2 * dx</find>
     </findStrings>
+    <replaceStrings>
+      <replace>dx2</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -155,12 +159,12 @@
       <workItem from="1601720503516" duration="12634000" />
       <workItem from="1601807129416" duration="5623000" />
       <workItem from="1601885002137" duration="18471000" />
-      <workItem from="1602054929613" duration="2299000" />
+      <workItem from="1602054929613" duration="5412000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64358000" />
+    <option name="totallyTimeSpent" value="67471000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -171,14 +175,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18650089" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18650089" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.5647482" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.21005386" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.19893429" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.19893429" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016892" side_tool="true" weight="0.39856374" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -319,8 +323,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="85" column="13" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
+        <state relative-caret-position="273">
+          <caret line="165" column="22" lean-forward="true" selection-start-line="165" selection-start-column="22" selection-end-line="165" selection-end-column="22" />
         </state>
       </provider>
     </entry>
