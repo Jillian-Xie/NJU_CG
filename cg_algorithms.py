@@ -83,48 +83,47 @@ def draw_line(p_list, algorithm):
             k = dy / dx
             x = x0
             y = y0
+            dx = abs(dx)
+            dy = abs(dy)
+            dx2 = 2 * dx
+            dy2 = 2 * dy
+            d = dx - dy2
             if 0 < k < 1:
-                d = dx - 2 * dy
                 for i in range(dx + 1):
                     result.append((int(x), int(y)))
                     x = x + 1
                     if d < 0:
                         y = y + 1
-                        d = d + 2 * dx - 2 * dy
+                        d = d + dx2 - dy2
                     else:
-                        d = d - 2 * dy
+                        d = d - dy2
             elif -1 < k < 0:
-                dy = abs(dy)
-                d = dx - 2 * dy
                 for i in range(dx + 1):
                     result.append((int(x), int(y)))
                     x = x + 1
                     if d < 0:
                         y = y - 1
-                        d = d + 2 * dx - 2 * dy
+                        d = d + dx2 - dy2
                     else:
-                        d = d - 2 * dy
+                        d = d - dy2
             elif k > 1:
-                d = dy - 2 * dx
                 for i in range(dy + 1):
                     result.append((int(x), int(y)))
                     y = y + 1
                     if d < 0:
                         x = x + 1
-                        d = d + 2 * dy - 2 * dx
+                        d = d + dy2 - dx2
                     else:
-                        d = d - 2 * dx
+                        d = d - dx2
             elif k < -1:
-                dy = abs(dy)
-                d = dy - 2 * dx
                 for i in range(dy + 1):
                     result.append((int(x), int(y)))
                     y = y - 1
                     if d < 0:
                         x = x + 1
-                        d = d + 2 * dy - 2 * dx
+                        d = d + dy2 - dx2
                     else:
-                        d = d - 2 * dx
+                        d = d - dx2
 
     return result
 
@@ -142,6 +141,7 @@ def draw_polygon(p_list, algorithm):
         result += line
     return result
 
+
 def my_draw_polygon(p_list, algorithm):
     """绘制多边形
 
@@ -150,8 +150,8 @@ def my_draw_polygon(p_list, algorithm):
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 绘制结果的像素点坐标列表
     """
     result = []
-    for i in range(len(p_list)-1):
-        line = draw_line([p_list[i], p_list[i+1]], algorithm)
+    for i in range(len(p_list) - 1):
+        line = draw_line([p_list[i], p_list[i + 1]], algorithm)
         result += line
     return result
 
