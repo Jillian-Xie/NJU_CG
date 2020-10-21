@@ -37,30 +37,36 @@ class MyCanvas(QGraphicsView):
         self.temp_id = ''
         self.temp_item = None
 
-    def judge_finish(self):
+    # 考虑鲁棒性
+    def judge_finish(self) -> bool:
         if self.status == 'polygon':
             if self.temp_item is not None:
                 self.temp_item.p_list.append(self.temp_item.p_list[0])
                 self.item_dict[self.temp_id] = self.temp_item
                 self.list_widget.addItem(self.temp_id)
+                self.temp_id = self.main_window.get_id()
                 self.temp_item = None
                 self.updateScene([self.sceneRect()])
-                self.finish_draw()
+                return False
+        return True
 
     def start_draw_line(self, algorithm, item_id):
-        self.judge_finish()
+        if not self.judge_finish():
+            item_id = str(int(item_id)+1)
         self.status = 'line'
         self.temp_algorithm = algorithm
         self.temp_id = item_id
 
     def start_draw_polygon(self, algorithm, item_id):
-        self.judge_finish()
+        if not self.judge_finish():
+            item_id = str(int(item_id)+1)
         self.status = 'polygon'
         self.temp_algorithm = algorithm
         self.temp_id = item_id
 
     def start_draw_ellipse(self, item_id):
-        self.judge_finish()
+        if not self.judge_finish():
+            item_id = str(int(item_id)+1)
         self.status = 'ellipse'
         self.temp_id = item_id
 
@@ -118,7 +124,6 @@ class MyCanvas(QGraphicsView):
                 self.temp_item.p_list.append(self.temp_item.p_list[0])
                 self.item_dict[self.temp_id] = self.temp_item
                 self.list_widget.addItem(self.temp_id)
-                self.temp_item = None
                 self.finish_draw()
         self.updateScene([self.sceneRect()])
         super().mouseDoubleClickEvent(event)
@@ -300,37 +305,55 @@ class MainWindow(QMainWindow):
         return _id
 
     def line_naive_action(self):
-        self.canvas_widget.start_draw_line('Naive', self.get_id()) # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        if self.item_cnt == 0:
+            self.canvas_widget.start_draw_line('Naive', self.get_id()) # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        else:
+            self.canvas_widget.start_draw_line('Naive', str(self.item_cnt-1))
         self.statusBar().showMessage('Naive算法绘制线段')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
     def line_dda_action(self):
-        self.canvas_widget.start_draw_line('DDA', self.get_id())
+        if self.item_cnt == 0:
+            self.canvas_widget.start_draw_line('DDA', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        else:
+            self.canvas_widget.start_draw_line('DDA', str(self.item_cnt-1))
         self.statusBar().showMessage('DDA算法绘制线段')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
     def line_bresenham_action(self):
-        self.canvas_widget.start_draw_line('Bresenham', self.get_id())
+        if self.item_cnt == 0:
+            self.canvas_widget.start_draw_line('Bresenham', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        else:
+            self.canvas_widget.start_draw_line('Bresenham', str(self.item_cnt-1))
         self.statusBar().showMessage('Bresenham算法绘制线段')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
     def polygon_dda_action(self):
-        self.canvas_widget.start_draw_polygon('DDA', self.get_id())
+        if self.item_cnt == 0:
+            self.canvas_widget.start_draw_polygon('DDA', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        else:
+            self.canvas_widget.start_draw_polygon('DDA', str(self.item_cnt-1))
         self.statusBar().showMessage('DDA算法绘制多边形')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
     def polygon_bresenham_action(self):
-        self.canvas_widget.start_draw_polygon('Bresenham', self.get_id())
+        if self.item_cnt == 0:
+            self.canvas_widget.start_draw_polygon('Bresenham', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        else:
+            self.canvas_widget.start_draw_polygon('Bresenham', str(self.item_cnt-1))
         self.statusBar().showMessage('Bresenham算法绘制多边形')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
     def ellipse_action(self):
-        self.canvas_widget.start_draw_ellipse(self.get_id())
+        if self.item_cnt == 0:
+            self.canvas_widget.start_draw_ellipse(self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        else:
+            self.canvas_widget.start_draw_ellipse(str(self.item_cnt-1))
         self.statusBar().showMessage('绘制椭圆')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
