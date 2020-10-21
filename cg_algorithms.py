@@ -164,6 +164,10 @@ def draw_ellipse(p_list):
     """
     x0, y0 = p_list[0]
     x1, y1 = p_list[1]
+    if x0 > x1:
+        x0, x1 = x1, x0
+    if y0 < y1:
+        y0, y1 = y1, y0
     a = (x1 - x0) / 2
     b = (y0 - y1) / 2
     xc = (x0 + x1) / 2
@@ -175,11 +179,11 @@ def draw_ellipse(p_list):
     y = b
     result = []
     while a2 * y > b2 * x:
-        result.append([x, y])  # 3
+        result.append([x, y])
         result.append([x, -y])
         result.append([-x, y])
         result.append([-x, -y])
-        if d < 0:  # 4
+        if d < 0:
             d = d + b2 * (2 * x + 3)
         else:
             d = d + b2 * (2 * x + 3) + a2 * (-2 * y + 2)
@@ -191,18 +195,22 @@ def draw_ellipse(p_list):
         result.append([x, -y])
         result.append([-x, y])
         result.append([-x, -y])
-        if d <= 0:
-            d = d - 2 * a2 * y + 3 * a2
+        # 此处课本更新d值的公式有误
+        # 新的公式参考自 https://blog.csdn.net/u012866328/article/details/52607439
+        if d < 0:
+            # d = d - 2 * a2 * y + 3 * a2
+            d = d + 2 * b2 * x + 2 * b2 - 2 * a2 * y + 3 * a2
             x = x + 1
         else:
-            d = d + 2 * b2 * x - 2 * a2 * y + 2 * b2 + 3 * a2
+            # d = d + 2 * b2 * x - 2 * a2 * y + 2 * b2 + 3 * a2
+            d = d - 2 * a2 * y + 3 * a2
         y = y - 1
 
-    for p in p_list:
+    for p in result:
         p[0] += xc
         p[1] += yc
 
-    pass
+    return result
 
 
 def draw_curve(p_list, algorithm):

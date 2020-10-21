@@ -37,14 +37,31 @@ class MyCanvas(QGraphicsView):
         self.temp_id = ''
         self.temp_item = None
 
+    def judge_finish(self):
+        if self.status == 'polygon':
+            if self.temp_item is not None:
+                self.temp_item.p_list.append(self.temp_item.p_list[0])
+                self.item_dict[self.temp_id] = self.temp_item
+                self.list_widget.addItem(self.temp_id)
+                self.temp_item = None
+                self.updateScene([self.sceneRect()])
+                self.finish_draw()
+
     def start_draw_line(self, algorithm, item_id):
+        self.judge_finish()
         self.status = 'line'
         self.temp_algorithm = algorithm
         self.temp_id = item_id
 
     def start_draw_polygon(self, algorithm, item_id):
+        self.judge_finish()
         self.status = 'polygon'
         self.temp_algorithm = algorithm
+        self.temp_id = item_id
+
+    def start_draw_ellipse(self, item_id):
+        self.judge_finish()
+        self.status = 'ellipse'
         self.temp_id = item_id
 
     def finish_draw(self):
@@ -80,15 +97,28 @@ class MyCanvas(QGraphicsView):
                 self.scene().addItem(self.temp_item)
             else:
                 self.temp_item.p_list.append([x, y])
+        elif self.status == 'ellipse':
+            self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.scene().addItem(self.temp_item)
         self.updateScene([self.sceneRect()])
         super().mousePressEvent(event)
 
-    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
-        if self.status == 'polygon':
+    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:# 此处发现一个bug，双击后会在dic产生一个None值，原因是双击时第一下按press捕捉，第二下按双击捕捉
+        pos = self.mapToScene(event.localPos().toPoint())
+        x = int(pos.x())
+        y = int(pos.y())
+        if self.status == 'line':
+            self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.scene().addItem(self.temp_item)
+        elif self.status == 'ellipse':
+            self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.scene().addItem(self.temp_item)
+        elif self.status == 'polygon':
             if self.temp_item is not None:
                 self.temp_item.p_list.append(self.temp_item.p_list[0])
                 self.item_dict[self.temp_id] = self.temp_item
                 self.list_widget.addItem(self.temp_id)
+                self.temp_item = None
                 self.finish_draw()
         self.updateScene([self.sceneRect()])
         super().mouseDoubleClickEvent(event)
@@ -102,11 +132,17 @@ class MyCanvas(QGraphicsView):
             self.temp_item.p_list[1] = [x, y]
         elif self.status == 'polygon':
             self.temp_item.p_list[-1] = [x, y]
+        elif self.status == 'ellipse':
+            self.temp_item.p_list[1] = [x, y]
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
 
     def mouseReleaseEvent(self, event: QMouseEvent) -> None:
         if self.status == 'line':
+            self.item_dict[self.temp_id] = self.temp_item
+            self.list_widget.addItem(self.temp_id)
+            self.finish_draw()
+        elif self.status == 'ellipse':
             self.item_dict[self.temp_id] = self.temp_item
             self.list_widget.addItem(self.temp_id)
             self.finish_draw()
@@ -141,7 +177,7 @@ class MyItem(QGraphicsItem):
         elif self.item_type == 'polygon':
             item_pixels = alg.my_draw_polygon(self.p_list, self.algorithm)
         elif self.item_type == 'ellipse':
-            pass
+            item_pixels = alg.draw_ellipse(self.p_list)
         elif self.item_type == 'curve':
             pass
         for p in item_pixels:
@@ -168,7 +204,13 @@ class MyItem(QGraphicsItem):
             h = max(y_list) - y
             return QRectF(x - 1, y - 1, w + 2, h + 2)
         elif self.item_type == 'ellipse':
-            pass
+            x0, y0 = self.p_list[0]
+            x1, y1 = self.p_list[1]
+            x = min(x0, x1)
+            y = min(y0, y1)
+            w = max(x0, x1) - x
+            h = max(y0, y1) - y
+            return QRectF(x - 1, y - 1, w + 2, h + 2)
         elif self.item_type == 'curve':
             pass
 
@@ -227,6 +269,7 @@ class MainWindow(QMainWindow):
         line_bresenham_act.triggered.connect(self.line_bresenham_action)
         polygon_dda_act.triggered.connect(self.polygon_dda_action)
         polygon_bresenham_act.triggered.connect(self.polygon_bresenham_action)
+        ellipse_act.triggered.connect(self.ellipse_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -257,7 +300,7 @@ class MainWindow(QMainWindow):
         return _id
 
     def line_naive_action(self):
-        self.canvas_widget.start_draw_line('Naive', self.get_id())
+        self.canvas_widget.start_draw_line('Naive', self.get_id()) # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         self.statusBar().showMessage('Naive算法绘制线段')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
@@ -283,6 +326,12 @@ class MainWindow(QMainWindow):
     def polygon_bresenham_action(self):
         self.canvas_widget.start_draw_polygon('Bresenham', self.get_id())
         self.statusBar().showMessage('Bresenham算法绘制多边形')
+        self.list_widget.clearSelection()
+        self.canvas_widget.clear_selection()
+
+    def ellipse_action(self):
+        self.canvas_widget.start_draw_ellipse(self.get_id())
+        self.statusBar().showMessage('绘制椭圆')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
