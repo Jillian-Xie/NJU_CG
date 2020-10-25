@@ -7,7 +7,6 @@ import cg_algorithms as alg
 import numpy as np
 from PIL import Image
 
-
 if __name__ == '__main__':
     input_file = sys.argv[1]
     output_dir = sys.argv[2]
@@ -60,11 +59,8 @@ if __name__ == '__main__':
                 item_dict[item_id] = ['line', [[x0, y0], [x1, y1]], algorithm, np.array(pen_color)]
             elif line[0] == 'drawPolygon':
                 item_id = line[1]
-                p_temp = line[2: -1]
+                p_list = [list(elem) for elem in list(zip(line[2: -1: 2], line[3: -1: 2]))]
                 algorithm = line[-1]
-                p_list = []
-                for i in range(len(p_temp), 2):
-                    p_list.append([int(p_temp[i]), int(p_temp[i+1])])
                 item_dict[item_id] = ['polygon', p_list, algorithm, np.array(pen_color)]
             elif line[0] == 'drawEllipse':
                 item_id = line[1]
