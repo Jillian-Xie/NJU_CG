@@ -198,17 +198,17 @@ def draw_ellipse(p_list):
         # 此处课本更新d值的公式有误
         # 新的公式参考自 https://blog.csdn.net/u012866328/article/details/52607439
         if d < 0:
-            # d = d - 2 * a2 * y + 3 * a2
             d = d + 2 * b2 * x + 2 * b2 - 2 * a2 * y + 3 * a2
             x = x + 1
         else:
-            # d = d + 2 * b2 * x - 2 * a2 * y + 2 * b2 + 3 * a2
             d = d - 2 * a2 * y + 3 * a2
         y = y - 1
 
     for p in result:
         p[0] += xc
         p[1] += yc
+        p[0] = int(p[0])
+        p[1] = int(p[1])
 
     return result
 
