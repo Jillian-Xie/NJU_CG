@@ -212,6 +212,13 @@ def draw_ellipse(p_list):
 
     return result
 
+def deCasteljau(p_list, n, i, t):
+    if n == 0:
+        return p_list[i]
+    else:
+        p1 = deCasteljau(p_list, n - 1, i, t)
+        p2 = deCasteljau(p_list, n - 1, i + 1, t)
+        return [(1 - t) * p1[0] + t * p2[0], (1 - t) * p1[1] + t * p2[1]]
 
 def draw_curve(p_list, algorithm):
     """绘制曲线
@@ -220,8 +227,19 @@ def draw_curve(p_list, algorithm):
     :param algorithm: (string) 绘制使用的算法，包括'Bezier'和'B-spline'（三次均匀B样条曲线，曲线不必经过首末控制点）
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 绘制结果的像素点坐标列表
     """
-    pass
-
+    n = 0
+    len = len(p_list)-1
+    result = [p_list[0]]
+    for i in range(len(p_list)-1):
+        temp = max(abs(p_list[i][0] - p_list[i+1][0]), abs(p_list[i][1] - p_list[i+1][1]))
+        n += temp
+    delta = 1/n
+    if algorithm == 'Bezier':
+        for i in range(1, n):
+            result.append(deCasteljau(p_list, len, 0, i * delta))
+        return result
+    elif algorithm == 'B-spline':
+        pass
 
 def translate(p_list, dx, dy):
     """平移变换

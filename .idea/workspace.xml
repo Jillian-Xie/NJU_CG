@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cg_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cg_algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_algorithms.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2679">
-              <caret line="144" column="39" lean-forward="true" selection-start-line="144" selection-start-column="39" selection-end-line="144" selection-end-column="39" />
+            <state relative-caret-position="307">
+              <caret line="230" column="23" lean-forward="true" selection-start-line="230" selection-start-column="23" selection-end-line="230" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -25,29 +25,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cg_cli.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="65" column="33" lean-forward="true" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
-              <folding>
-                <element signature="e#46#56#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="38">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cg_gui.py">
+        <entry file="file://$PROJECT_DIR$/cg_cli.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="137" column="38" lean-forward="true" selection-start-line="137" selection-start-column="38" selection-end-line="137" selection-end-column="38" />
+            <state relative-caret-position="475">
+              <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
@@ -91,6 +79,7 @@
       <find>finish</find>
       <find>print</find>
       <find>ell</find>
+      <find>bug</find>
     </findStrings>
     <replaceStrings>
       <replace>dx2</replace>
@@ -105,15 +94,14 @@
         <option value="$PROJECT_DIR$/hello.py" />
         <option value="$PROJECT_DIR$/other_code.py" />
         <option value="$PROJECT_DIR$/cg_gui.py" />
-        <option value="$PROJECT_DIR$/cg_algorithms.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/cg_cli.py" />
+        <option value="$PROJECT_DIR$/cg_algorithms.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="901" />
-    <option name="y" value="7" />
+    <option name="x" value="907" />
     <option name="width" value="1023" />
     <option name="height" value="1032" />
   </component>
@@ -127,10 +115,10 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cg_gui.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -158,7 +146,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cg_gui.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -204,15 +192,20 @@
       <workItem from="1603353647660" duration="562000" />
       <workItem from="1603357738094" duration="100000" />
       <workItem from="1603437063644" duration="1625000" />
-      <workItem from="1603590515181" duration="7769000" />
+      <workItem from="1603590515181" duration="9634000" />
+      <workItem from="1603807692303" duration="48000" />
+      <workItem from="1603807874791" duration="21000" />
+      <workItem from="1604142230388" duration="8101000" />
+      <workItem from="1604296301182" duration="318000" />
+      <workItem from="1606483674168" duration="1728000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95577000" />
+    <option name="totallyTimeSpent" value="107658000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="601" y="5" width="682" height="688" extended-state="0" />
+    <frame x="605" y="0" width="682" height="688" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.35015774" />
@@ -220,15 +213,15 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34892085" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18705036" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.3410302" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.2086331" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.1758437" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.33093524" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016892" side_tool="true" weight="0.39856374" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016892" side_tool="true" weight="0.397482" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -301,11 +294,6 @@
           <line>44</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cg_algorithms.py</url>
-          <line>137</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -317,7 +305,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1603605491680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1606486370546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -393,10 +381,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cg_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="137" column="38" lean-forward="true" selection-start-line="137" selection-start-column="38" selection-end-line="137" selection-end-column="38" />
+        <state relative-caret-position="-57">
+          <caret line="207" column="31" selection-start-line="207" selection-start-column="31" selection-end-line="207" selection-end-column="31" />
+          <folding>
+            <element signature="e#46#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cg_cli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
           </folding>
@@ -405,25 +410,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2679">
-          <caret line="144" column="39" lean-forward="true" selection-start-line="144" selection-start-column="39" selection-end-line="144" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cg_cli.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="65" column="33" lean-forward="true" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
-          <folding>
-            <element signature="e#46#56#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="307">
+          <caret line="230" column="23" lean-forward="true" selection-start-line="230" selection-start-column="23" selection-end-line="230" selection-end-column="23" />
         </state>
       </provider>
     </entry>
