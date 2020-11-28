@@ -212,13 +212,14 @@ def draw_ellipse(p_list):
 
     return result
 
-def deCasteljau(p_list, n, i, t):
-    if n == 0:
-        return p_list[i]
-    else:
-        p1 = deCasteljau(p_list, n - 1, i, t)
-        p2 = deCasteljau(p_list, n - 1, i + 1, t)
-        return [(1 - t) * p1[0] + t * p2[0], (1 - t) * p1[1] + t * p2[1]]
+
+def bezier(p_list, n, i, t):
+    result = [p for p in p_list]
+    for i in range(1, len(p_list)):
+        for j in range(len(p_list) - i):
+            result[j] = [(1 - t) * result[j][0] + t * result[j + 1][0], (1 - t) * result[j][1] + t * result[j + 1][1]]
+    return result[0]
+
 
 def draw_curve(p_list, algorithm):
     """绘制曲线
@@ -228,22 +229,23 @@ def draw_curve(p_list, algorithm):
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 绘制结果的像素点坐标列表
     """
     n = 0
-    num = len(p_list)-1
+    num = len(p_list) - 1
     if num < 0:
         return []
     result = [p_list[0]]
     if num == 0:
         return result
     for i in range(num):
-        temp = max(abs(p_list[i][0] - p_list[i+1][0]), abs(p_list[i][1] - p_list[i+1][1]))
+        temp = max(abs(p_list[i][0] - p_list[i + 1][0]), abs(p_list[i][1] - p_list[i + 1][1]))
         n += temp
-    delta = 1/n
+    delta = 1 / n
     if algorithm == 'bezier':
         for i in range(1, n):
-            result.append(deCasteljau(p_list, num, 0, i * delta))
+            result.append(bezier(p_list, num, 0, i * delta))
         return result
     elif algorithm == 'b_spline':
         pass
+
 
 def translate(p_list, dx, dy):
     """平移变换
