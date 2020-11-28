@@ -228,17 +228,21 @@ def draw_curve(p_list, algorithm):
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 绘制结果的像素点坐标列表
     """
     n = 0
-    len = len(p_list)-1
+    num = len(p_list)-1
+    if num < 0:
+        return []
     result = [p_list[0]]
-    for i in range(len(p_list)-1):
+    if num == 0:
+        return result
+    for i in range(num):
         temp = max(abs(p_list[i][0] - p_list[i+1][0]), abs(p_list[i][1] - p_list[i+1][1]))
         n += temp
     delta = 1/n
-    if algorithm == 'Bezier':
+    if algorithm == 'bezier':
         for i in range(1, n):
-            result.append(deCasteljau(p_list, len, 0, i * delta))
+            result.append(deCasteljau(p_list, num, 0, i * delta))
         return result
-    elif algorithm == 'B-spline':
+    elif algorithm == 'b_spline':
         pass
 
 def translate(p_list, dx, dy):

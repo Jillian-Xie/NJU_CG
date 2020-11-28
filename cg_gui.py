@@ -70,6 +70,13 @@ class MyCanvas(QGraphicsView):
         self.status = 'ellipse'
         self.temp_id = item_id
 
+    def start_draw_curve(self, algorithm, item_id):
+        if not self.judge_finish():
+            item_id = str(int(item_id)+1)
+        self.status = 'curve'
+        self.temp_algorithm = algorithm
+        self.temp_id = item_id
+
     def finish_draw(self):
         self.temp_item = None
         self.temp_id = self.main_window.get_id()
@@ -106,6 +113,12 @@ class MyCanvas(QGraphicsView):
         elif self.status == 'ellipse':
             self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
+        elif self.status == 'curve':
+            if self.temp_item is None:
+                self.temp_item = MyItem(self.temp_id, self.status, [[x, y]], self.temp_algorithm)
+                self.scene().addItem(self.temp_item)
+            else:
+                self.temp_item.p_list.append([x, y])
         self.updateScene([self.sceneRect()])
         super().mousePressEvent(event)
 
@@ -125,6 +138,12 @@ class MyCanvas(QGraphicsView):
                 self.item_dict[self.temp_id] = self.temp_item
                 self.list_widget.addItem(self.temp_id)
                 self.finish_draw()
+        elif self.status == 'curve':
+            if self.temp_item is not None:# TODO
+                self.item_dict[self.temp_id] = self.temp_item
+                self.list_widget.addItem(self.temp_id)
+                self.finish_draw()
+
         self.updateScene([self.sceneRect()])
         super().mouseDoubleClickEvent(event)
 
@@ -136,6 +155,8 @@ class MyCanvas(QGraphicsView):
         if self.status == 'line':
             self.temp_item.p_list[1] = [x, y]
         elif self.status == 'polygon':
+            self.temp_item.p_list[-1] = [x, y]
+        elif self.status == 'curve':
             self.temp_item.p_list[-1] = [x, y]
         elif self.status == 'ellipse':
             self.temp_item.p_list[1] = [x, y]
@@ -184,7 +205,7 @@ class MyItem(QGraphicsItem):
         elif self.item_type == 'ellipse':
             item_pixels = alg.draw_ellipse(self.p_list)
         elif self.item_type == 'curve':
-            pass
+            item_pixels = alg.draw_curve(self.p_list, self.algorithm)
         for p in item_pixels:
             painter.drawPoint(*p)
         if self.selected:
@@ -216,8 +237,14 @@ class MyItem(QGraphicsItem):
             w = max(x0, x1) - x
             h = max(y0, y1) - y
             return QRectF(x - 1, y - 1, w + 2, h + 2)
-        elif self.item_type == 'curve':
-            pass
+        elif self.item_type == 'curve':# TODO
+            x_list = [x[0] for x in self.p_list]
+            y_list = [y[1] for y in self.p_list]
+            x = min(x_list)
+            y = min(y_list)
+            w = max(x_list) - x
+            h = max(y_list) - y
+            return QRectF(x - 1, y - 1, w + 2, h + 2)
 
 
 class MainWindow(QMainWindow):
@@ -275,6 +302,8 @@ class MainWindow(QMainWindow):
         polygon_dda_act.triggered.connect(self.polygon_dda_action)
         polygon_bresenham_act.triggered.connect(self.polygon_bresenham_action)
         ellipse_act.triggered.connect(self.ellipse_action)
+        curve_bezier_act.triggered.connect(self.curve_bezier_action)
+        curve_b_spline_act.triggered.connect(self.curve_b_spline_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -346,6 +375,24 @@ class MainWindow(QMainWindow):
         else:
             self.canvas_widget.start_draw_polygon('Bresenham', str(self.item_cnt-1))
         self.statusBar().showMessage('Bresenham算法绘制多边形')
+        self.list_widget.clearSelection()
+        self.canvas_widget.clear_selection()
+
+    def curve_bezier_action(self):
+        if self.item_cnt == 0:
+            self.canvas_widget.start_draw_curve('bezier', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        else:
+            self.canvas_widget.start_draw_curve('bezier', str(self.item_cnt-1))
+        self.statusBar().showMessage('bezier算法绘制曲线')
+        self.list_widget.clearSelection()
+        self.canvas_widget.clear_selection()
+
+    def curve_b_spline_action(self):
+        if self.item_cnt == 0:
+            self.canvas_widget.start_draw_curve('b_spline', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+        else:
+            self.canvas_widget.start_draw_curve('b_spline', str(self.item_cnt-1))
+        self.statusBar().showMessage('b_spline算法绘制曲线')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
