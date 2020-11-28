@@ -213,10 +213,10 @@ def draw_ellipse(p_list):
     return result
 
 
-def bezier(p_list, n, i, t):
+def bezier(p_list, n, t):
     result = [p for p in p_list]
-    for i in range(1, len(p_list)):
-        for j in range(len(p_list) - i):
+    for i in range(1, n):
+        for j in range(n - i):
             result[j] = [(1 - t) * result[j][0] + t * result[j + 1][0], (1 - t) * result[j][1] + t * result[j + 1][1]]
     return result[0]
 
@@ -228,24 +228,23 @@ def draw_curve(p_list, algorithm):
     :param algorithm: (string) 绘制使用的算法，包括'Bezier'和'B-spline'（三次均匀B样条曲线，曲线不必经过首末控制点）
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 绘制结果的像素点坐标列表
     """
-    n = 0
-    num = len(p_list) - 1
-    if num < 0:
-        return []
-    result = [p_list[0]]
+    num = len(p_list)
     if num == 0:
-        return result
-    for i in range(num):
-        temp = max(abs(p_list[i][0] - p_list[i + 1][0]), abs(p_list[i][1] - p_list[i + 1][1]))
-        n += temp
+        return []
+    elif num == 1:
+        return [p_list[0]]
+    result = [p_list[0]]
+    n = 0
+    for i in range(num-1):
+        n += max(abs(p_list[i][0] - p_list[i + 1][0]), abs(p_list[i][1] - p_list[i + 1][1]))
     delta = 1 / n
     if algorithm == 'bezier':
         for i in range(1, n):
-            result.append(bezier(p_list, num, 0, i * delta))
-        return result
+            result.append(bezier(p_list, num, i * delta))
     elif algorithm == 'b_spline':
         pass
 
+    return [[int(p[0]), int(p[1])] for p in result]
 
 def translate(p_list, dx, dy):
     """平移变换
