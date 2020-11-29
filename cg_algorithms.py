@@ -221,6 +221,21 @@ def bezier(p_list, n, t):
     return result[0]
 
 
+def deBoorCox(i, p, t):
+    if p == 0:
+        if i <= t and t < i + 1:
+            return 1
+        return 0
+    return (t - i) / p * deBoorCox(i, p - 1, t) + (i + p + 1 - t) / p * deBoorCox(i + 1, p - 1, t)
+
+def b_spline(p_list, t):
+    result = [0, 0]
+    for i, p in enumerate(p_list):
+        B = deBoorCox(i, 3, t)
+        result[0] += p[0] * B
+        result[1] += p[1] * B
+    return result
+
 def draw_curve(p_list, algorithm):
     """绘制曲线
 
@@ -235,16 +250,21 @@ def draw_curve(p_list, algorithm):
         return [p_list[0]]
     result = [p_list[0]]
     n = 0
-    for i in range(num-1):
+    for i in range(num - 1):
         n += max(abs(p_list[i][0] - p_list[i + 1][0]), abs(p_list[i][1] - p_list[i + 1][1]))
     delta = 1 / n
     if algorithm == 'bezier':
         for i in range(1, n):
             result.append(bezier(p_list, num, i * delta))
     elif algorithm == 'b_spline':
-        pass
-
+        if len(p_list) < 4:
+            return [[int(p[0]), int(p[1])] for p in p_list]
+        t = 3
+        while t < num:
+            result.append(b_spline(p_list, t))
+            t += delta
     return [[int(p[0]), int(p[1])] for p in result]
+
 
 def translate(p_list, dx, dy):
     """平移变换
