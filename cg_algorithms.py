@@ -203,13 +203,11 @@ def draw_ellipse(p_list):
         else:
             d = d - 2 * a2 * y + 3 * a2
         y = y - 1
-
     for p in result:
         p[0] += xc
         p[1] += yc
         p[0] = int(p[0])
         p[1] = int(p[1])
-
     return result
 
 
@@ -228,6 +226,7 @@ def deBoorCox(i, p, t):
         return 0
     return (t - i) / p * deBoorCox(i, p - 1, t) + (i + p + 1 - t) / p * deBoorCox(i + 1, p - 1, t)
 
+
 def b_spline(p_list, t):
     result = [0, 0]
     for i, p in enumerate(p_list):
@@ -235,6 +234,7 @@ def b_spline(p_list, t):
         result[0] += p[0] * B
         result[1] += p[1] * B
     return result
+
 
 def draw_curve(p_list, algorithm):
     """绘制曲线
@@ -250,12 +250,15 @@ def draw_curve(p_list, algorithm):
         return [p_list[0]]
     result = [p_list[0]]
     n = 0
+    delta = 1
     for i in range(num - 1):
         n += max(abs(p_list[i][0] - p_list[i + 1][0]), abs(p_list[i][1] - p_list[i + 1][1]))
-    delta = 1 / n
+    if n is not 0:
+        delta = 1 / n
     if algorithm == 'bezier':
         for i in range(1, n):
             result.append(bezier(p_list, num, i * delta))
+    # 参考课程：https://www.icourse163.org/learn/CAU-45006?tid=1450413503#/learn/announce
     elif algorithm == 'b_spline':
         if len(p_list) < 4:
             return [[int(p[0]), int(p[1])] for p in p_list]
@@ -263,6 +266,8 @@ def draw_curve(p_list, algorithm):
         while t < num:
             result.append(b_spline(p_list, t))
             t += delta
+    # 参考资料：https://www.icourse163.org/learn/CAU-45006?tid=1450413503#/learn/announce
+    #           https://en.wikipedia.org/wiki/De_Boor%27s_algorithm
     return [[int(p[0]), int(p[1])] for p in result]
 
 

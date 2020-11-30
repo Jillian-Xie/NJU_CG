@@ -237,7 +237,7 @@ class MyItem(QGraphicsItem):
             w = max(x0, x1) - x
             h = max(y0, y1) - y
             return QRectF(x - 1, y - 1, w + 2, h + 2)
-        elif self.item_type == 'curve':# TODO
+        elif self.item_type == 'curve':
             x_list = [x[0] for x in self.p_list]
             y_list = [y[1] for y in self.p_list]
             x = min(x_list)
