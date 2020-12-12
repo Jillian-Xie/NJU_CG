@@ -17,8 +17,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="257" column="29" lean-forward="true" selection-start-line="257" selection-start-column="29" selection-end-line="257" selection-end-column="29" />
+            <state relative-caret-position="5016">
+              <caret line="264" column="46" selection-start-line="264" selection-start-column="46" selection-end-line="264" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -47,8 +47,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="239" column="8" selection-start-line="239" selection-start-column="8" selection-end-line="239" selection-end-column="8" />
+            <state relative-caret-position="-3781">
+              <caret line="184" column="1" selection-start-line="184" selection-start-column="1" selection-end-line="184" selection-end-column="1" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
@@ -67,16 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.status</find>
-      <find>line_naive_act</find>
-      <find>line</find>
-      <find>draw_polygon</find>
-      <find>alg</find>
-      <find>start</find>
-      <find>boundingRect</find>
-      <find>paint</find>
-      <find>2 * dx</find>
-      <find>start_draw_elli</find>
       <find>press</find>
       <find>item_id</find>
       <find>add</find>
@@ -93,9 +83,24 @@
       <find>print</find>
       <find>ell</find>
       <find>bug</find>
+      <find>line_naive_action</find>
+      <find>alg.</find>
+      <find>paint(</find>
+      <find>p_list</find>
+      <find>item_type</find>
+      <find>alg.draw_</find>
+      <find>is None</find>
+      <find>start =</find>
+      <find>dest</find>
+      <find>start_draw_translate</find>
+      <find>start_translate</find>
+      <find>setOverrideCursor</find>
+      <find>temp_plist</find>
+      <find>translateOrigin</find>
     </findStrings>
     <replaceStrings>
       <replace>dx2</replace>
+      <replace>basepoint</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -113,9 +118,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="931" />
-    <option name="width" value="998" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="930" />
+    <option name="width" value="999" />
     <option name="height" value="1032" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -128,7 +133,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cg_gui.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -213,15 +218,19 @@
       <workItem from="1606483674168" duration="5494000" />
       <workItem from="1606528715692" duration="15699000" />
       <workItem from="1606629616696" duration="7350000" />
-      <workItem from="1606664580978" duration="788000" />
+      <workItem from="1606664580978" duration="2980000" />
+      <workItem from="1606736361439" duration="225000" />
+      <workItem from="1607411879821" duration="15898000" />
+      <workItem from="1607746775307" duration="3233000" />
+      <workItem from="1607751207593" duration="81000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135261000" />
+    <option name="totallyTimeSpent" value="156890000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="621" y="0" width="665" height="688" extended-state="0" />
+    <frame x="620" y="0" width="666" height="688" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.35015774" />
@@ -229,8 +238,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3291367" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.3381295" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18884893" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.23741007" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -307,17 +316,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_algorithms.py</url>
-          <line>44</line>
+          <line>42</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_algorithms.py</url>
-          <line>264</line>
+          <line>262</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_algorithms.py</url>
-          <line>256</line>
+          <line>254</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
@@ -336,7 +345,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1606665345443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1607758989996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -417,6 +426,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/Anaconda3/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6289">
+          <caret line="332" selection-start-line="332" selection-end-line="332" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5016">
+          <caret line="264" column="46" selection-start-line="264" selection-start-column="46" selection-end-line="264" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -434,24 +457,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Anaconda3/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6289">
-          <caret line="332" selection-start-line="332" selection-end-line="332" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="257" column="29" lean-forward="true" selection-start-line="257" selection-start-column="29" selection-end-line="257" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cg_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="239" column="8" selection-start-line="239" selection-start-column="8" selection-end-line="239" selection-end-column="8" />
+        <state relative-caret-position="-3781">
+          <caret line="184" column="1" selection-start-line="184" selection-start-column="1" selection-end-line="184" selection-end-column="1" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
           </folding>

@@ -2,8 +2,6 @@
 # -*- coding:utf-8 -*-
 
 # 本文件只允许依赖math库
-import math
-
 
 def draw_line(p_list, algorithm):
     """绘制线段
@@ -253,7 +251,7 @@ def draw_curve(p_list, algorithm):
     delta = 1
     for i in range(num - 1):
         n += max(abs(p_list[i][0] - p_list[i + 1][0]), abs(p_list[i][1] - p_list[i + 1][1]))
-    if n is not 0:
+    if not n == 0:
         delta = 1 / n
     if algorithm == 'bezier':
         for i in range(1, n):
@@ -279,7 +277,7 @@ def translate(p_list, dx, dy):
     :param dy: (int) 垂直方向平移量
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 变换后的图元参数
     """
-    pass
+    return [[p[0] + dx, p[1] + dy] for p in p_list]
 
 
 def rotate(p_list, x, y, r):

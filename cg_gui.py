@@ -4,20 +4,9 @@
 import sys
 import cg_algorithms as alg
 from typing import Optional
-from PyQt5.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    qApp,
-    QGraphicsScene,
-    QGraphicsView,
-    QGraphicsItem,
-    QListWidget,
-    QHBoxLayout,
-    QWidget,
-    QMessageBox,
-    QStyleOptionGraphicsItem)
-from PyQt5.QtGui import QPainter, QMouseEvent, QColor, QIcon
-from PyQt5.QtCore import QRectF
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 
 
 class MyCanvas(QGraphicsView):
@@ -36,12 +25,24 @@ class MyCanvas(QGraphicsView):
         self.temp_algorithm = ''
         self.temp_id = ''
         self.temp_item = None
-
+#----
+        self.basepoint = [-1, -1]
+        self.temp_plist = []
+#----
     # 考虑鲁棒性
     def judge_finish(self) -> bool:
+        QApplication.setOverrideCursor(Qt.ArrowCursor)
         if self.status == 'polygon':
             if self.temp_item is not None:
                 self.temp_item.p_list.append(self.temp_item.p_list[0])
+                self.item_dict[self.temp_id] = self.temp_item
+                self.list_widget.addItem(self.temp_id)
+                self.temp_id = self.main_window.get_id()
+                self.temp_item = None
+                self.updateScene([self.sceneRect()])
+                return False
+        elif self.status == 'curve':
+            if self.temp_item is not None:
                 self.item_dict[self.temp_id] = self.temp_item
                 self.list_widget.addItem(self.temp_id)
                 self.temp_id = self.main_window.get_id()
@@ -77,7 +78,21 @@ class MyCanvas(QGraphicsView):
         self.temp_algorithm = algorithm
         self.temp_id = item_id
 
+    def start_translate(self) -> bool:
+        if not self.judge_finish():
+            self.item_id = str(int(self.item_id)+1)
+        self.status = 'translate'
+        if self.selected_id == '':
+            return False
+        else:
+            self.temp_id = self.selected_id
+            self.temp_item = self.item_dict[self.temp_id]
+            self.temp_plist = self.temp_item.p_list[:]
+            self.basepoint = [-1, -1]
+            return True
+
     def finish_draw(self):
+        QApplication.setOverrideCursor(Qt.ArrowCursor)
         self.temp_item = None
         self.temp_id = self.main_window.get_id()
 
@@ -94,7 +109,7 @@ class MyCanvas(QGraphicsView):
         self.selected_id = selected
         self.item_dict[selected].selected = True
         self.item_dict[selected].update()
-        self.status = ''
+        self.temp_item = self.item_dict[selected]
         self.updateScene([self.sceneRect()])
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
@@ -119,10 +134,14 @@ class MyCanvas(QGraphicsView):
                 self.scene().addItem(self.temp_item)
             else:
                 self.temp_item.p_list.append([x, y])
+        elif self.status == 'translate':
+            self.basepoint = [x, y]
+            self.temp_plist = self.temp_item.p_list[:]
+
         self.updateScene([self.sceneRect()])
         super().mousePressEvent(event)
 
-    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:# 此处发现一个bug，双击后会在dic产生一个None值，原因是双击时第一下按press捕捉，第二下按双击捕捉
+    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
         pos = self.mapToScene(event.localPos().toPoint())
         x = int(pos.x())
         y = int(pos.y())
@@ -139,7 +158,7 @@ class MyCanvas(QGraphicsView):
                 self.list_widget.addItem(self.temp_id)
                 self.finish_draw()
         elif self.status == 'curve':
-            if self.temp_item is not None:# TODO
+            if self.temp_item is not None:
                 self.item_dict[self.temp_id] = self.temp_item
                 self.list_widget.addItem(self.temp_id)
                 self.finish_draw()
@@ -160,10 +179,16 @@ class MyCanvas(QGraphicsView):
             self.temp_item.p_list[-1] = [x, y]
         elif self.status == 'ellipse':
             self.temp_item.p_list[1] = [x, y]
+        elif self.status == 'translate':
+            QApplication.setOverrideCursor(Qt.SizeAllCursor)
+            self.temp_item.p_list = alg.translate(self.temp_plist, x - self.basepoint[0], y - self.basepoint[1])
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
 
     def mouseReleaseEvent(self, event: QMouseEvent) -> None:
+        pos = self.mapToScene(event.localPos().toPoint())
+        x = int(pos.x())
+        y = int(pos.y())
         if self.status == 'line':
             self.item_dict[self.temp_id] = self.temp_item
             self.list_widget.addItem(self.temp_id)
@@ -172,7 +197,10 @@ class MyCanvas(QGraphicsView):
             self.item_dict[self.temp_id] = self.temp_item
             self.list_widget.addItem(self.temp_id)
             self.finish_draw()
-
+        elif self.status == 'translate':
+            QApplication.setOverrideCursor(Qt.ArrowCursor)
+            self.temp_id = ''
+            self.temp_plist = self.temp_item.p_list[:]
         super().mouseReleaseEvent(event)
 
 
@@ -196,6 +224,7 @@ class MyItem(QGraphicsItem):
         self.p_list = p_list  # 图元参数
         self.algorithm = algorithm  # 绘制算法，'DDA'、'Bresenham'、'Bezier'、'B-spline'等
         self.selected = False
+        self.temp_list = None
 
     def paint(self, painter: QPainter, option: QStyleOptionGraphicsItem, widget: Optional[QWidget] = ...) -> None:
         if self.item_type == 'line':
@@ -304,6 +333,7 @@ class MainWindow(QMainWindow):
         ellipse_act.triggered.connect(self.ellipse_action)
         curve_bezier_act.triggered.connect(self.curve_bezier_action)
         curve_b_spline_act.triggered.connect(self.curve_b_spline_action)
+        translate_act.triggered.connect(self.translate_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -404,6 +434,12 @@ class MainWindow(QMainWindow):
         self.statusBar().showMessage('绘制椭圆')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
+
+    def translate_action(self):
+        if not self.canvas_widget.start_translate():
+            self.statusBar().showMessage('请选中图元')
+        else:
+            self.statusBar().showMessage('图元平移')
 
 
 if __name__ == '__main__':
