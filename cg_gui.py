@@ -86,42 +86,42 @@ class MyCanvas(QGraphicsView):
 
     def start_translate(self, item_id) -> bool:
         if not self.judge_finish():
-            self.temp_id = str(int(item_id)+1)
-        self.status = 'translate'
+            self.temp_id = str(int(item_id) + 1)
         if self.selected_id == '':
-            return False
-        else:
-            self.temp_id = self.selected_id
-            self.temp_item = self.item_dict[self.temp_id]
-            self.temp_plist = self.temp_item.p_list[:]
+            self.status = ''
             self.basepoint = [-1, -1]
-            return True
+            return False
+        self.status = 'translate'
+        self.temp_id = self.selected_id
+        self.temp_item = self.item_dict[self.temp_id]
+        self.basepoint = [-1, -1]
+        return True
 
     def start_rotate(self, item_id) -> bool:
         if not self.judge_finish():
             self.temp_id = str(int(item_id)+1)
-        self.status = 'rotate'
         if self.selected_id == '':
+            self.status = ''
             self.basepoint = [-1, -1]
             return False
-        else:
-            self.temp_id = self.selected_id
-            self.temp_item = self.item_dict[self.temp_id]
-            self.basepoint = [-1, -1]
-            return True
+        self.status = 'rotate'
+        self.temp_id = self.selected_id
+        self.temp_item = self.item_dict[self.temp_id]
+        self.basepoint = [-1, -1]
+        return True
 
     def start_scale(self, item_id):
         if not self.judge_finish():
-            self.temp_id = str(int(item_id)+1)
-        self.status = 'scale'
+            self.temp_id = str(int(item_id) + 1)
         if self.selected_id == '':
+            self.status = ''
             self.basepoint = [-1, -1]
             return False
-        else:
-            self.temp_id = self.selected_id
-            self.temp_item = self.item_dict[self.temp_id]
-            self.basepoint = [-1, -1]
-            return True
+        self.status = 'scale'
+        self.temp_id = self.selected_id
+        self.temp_item = self.item_dict[self.temp_id]
+        self.basepoint = [-1, -1]
+        return True
 
     def finish_draw(self):
         QApplication.setOverrideCursor(Qt.ArrowCursor)
@@ -506,19 +506,19 @@ class MainWindow(QMainWindow):
 
     def translate_action(self):
         if not self.canvas_widget.start_translate(str(self.item_cnt-1)):
-            self.statusBar().showMessage('选择图元')
+            self.statusBar().showMessage('您还没有选择要平移的图元！')
         else:
             self.statusBar().showMessage('图元平移')
 
     def rotate_action(self):
         if not self.canvas_widget.start_rotate(str(self.item_cnt-1)):
-            self.statusBar().showMessage('选择图元')
+            self.statusBar().showMessage('您还没有选择要旋转的图元！')
         else:
             self.statusBar().showMessage('图元旋转')
 
     def scale_action(self):
         if not self.canvas_widget.start_scale(str(self.item_cnt-1)):
-            self.statusBar().showMessage('选择图元')
+            self.statusBar().showMessage('您还没有选择要缩放的图元！')
         else:
             self.statusBar().showMessage('图元缩放')
 

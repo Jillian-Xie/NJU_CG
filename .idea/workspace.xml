@@ -45,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="146" column="23" selection-start-line="146" selection-start-column="23" selection-end-line="146" selection-end-column="23" />
+            <state relative-caret-position="157">
+              <caret line="92" column="24" lean-forward="true" selection-start-line="92" selection-start-column="24" selection-end-line="92" selection-end-column="24" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
@@ -223,12 +223,12 @@
       <workItem from="1607751207593" duration="4989000" />
       <workItem from="1608133143616" duration="2154000" />
       <workItem from="1608167728599" duration="3871000" />
-      <workItem from="1608175039654" duration="2283000" />
+      <workItem from="1608175039654" duration="2865000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170106000" />
+    <option name="totallyTimeSpent" value="170688000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="620" y="0" width="666" height="688" extended-state="0" />
@@ -239,7 +239,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18884893" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2679856" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.48920864" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -330,7 +330,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1608177482476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1608177951051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -444,8 +444,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="146" column="23" selection-start-line="146" selection-start-column="23" selection-end-line="146" selection-end-column="23" />
+        <state relative-caret-position="157">
+          <caret line="92" column="24" lean-forward="true" selection-start-line="92" selection-start-column="24" selection-end-line="92" selection-end-column="24" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
           </folding>
