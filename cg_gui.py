@@ -55,14 +55,14 @@ class MyCanvas(QGraphicsView):
 
     def start_draw_line(self, algorithm, item_id):
         if not self.judge_finish():
-            item_id = str(int(item_id)+1)
+            item_id = str(int(item_id) + 1)
         self.status = 'line'
         self.temp_algorithm = algorithm
         self.temp_id = item_id
 
     def start_draw_polygon(self, algorithm, item_id):
         if not self.judge_finish():
-            item_id = str(int(item_id)+1)
+            item_id = str(int(item_id) + 1)
         if self.status == '' or self.status == 'translate' or self.status == 'rotate' or self.status == 'scale' or self.status == 'clip':
             self.temp_item = None
         self.status = 'polygon'
@@ -71,13 +71,13 @@ class MyCanvas(QGraphicsView):
 
     def start_draw_ellipse(self, item_id):
         if not self.judge_finish():
-            item_id = str(int(item_id)+1)
+            item_id = str(int(item_id) + 1)
         self.status = 'ellipse'
         self.temp_id = item_id
 
     def start_draw_curve(self, algorithm, item_id):
         if not self.judge_finish():
-            item_id = str(int(item_id)+1)
+            item_id = str(int(item_id) + 1)
         if self.status == '' or self.status == 'translate' or self.status == 'rotate' or self.status == 'scale' or self.status == 'clip':
             self.temp_item = None
         self.status = 'curve'
@@ -99,7 +99,7 @@ class MyCanvas(QGraphicsView):
 
     def start_rotate(self, item_id) -> bool:
         if not self.judge_finish():
-            self.temp_id = str(int(item_id)+1)
+            self.temp_id = str(int(item_id) + 1)
         if self.selected_id == '':
             self.status = ''
             self.basepoint = [-1, -1]
@@ -182,8 +182,8 @@ class MyCanvas(QGraphicsView):
             if self.basepoint == [-1, -1]:
                 self.basepoint = [x, y]
                 self.temp_plist = self.temp_item.p_list[:]
-                x_list = [x[0] for x in self.p_list]
-                y_list = [y[1] for y in self.p_list]
+                x_list = [x[0] for x in self.temp_plist]
+                y_list = [y[1] for y in self.temp_plist]
                 self.core = [(min(x_list) + max(x_list)) / 2, (min(y_list) + max(y_list)) / 2]
 
         self.updateScene([self.sceneRect()])
@@ -217,10 +217,17 @@ class MyCanvas(QGraphicsView):
     def get_angle(self, p0, corepoint, p1) -> int:
         if p0 == corepoint or p0 == p1 or p1 == corepoint:
             return 0
-        angle0 = math.atan2(p0[1]-corepoint[1], p0[0]-corepoint[0])
-        angle1 = math.atan2(p1[1]-corepoint[1], p1[0]-corepoint[0])
-        angle = math.degrees(angle1-angle0)
+        angle0 = math.atan2(p0[1] - corepoint[1], p0[0] - corepoint[0])
+        angle1 = math.atan2(p1[1] - corepoint[1], p1[0] - corepoint[0])
+        angle = math.degrees(angle1 - angle0)
         return angle
+
+    def get_multiple(self, p0, corepoint, p1) -> int:
+        if p0[0] == corepoint[0]:
+            return 1
+        d0 = abs(p0[0] - corepoint[0])
+        d1 = abs(p1[0] - corepoint[0])
+        return d1 / d0
 
     def mouseMoveEvent(self, event: QMouseEvent) -> None:
         pos = self.mapToScene(event.localPos().toPoint())
@@ -241,6 +248,15 @@ class MyCanvas(QGraphicsView):
             QApplication.setOverrideCursor(Qt.ClosedHandCursor)
             r = self.get_angle(self.basepoint, self.core, [x, y])
             self.temp_item.p_list = alg.rotate(self.temp_plist, self.core[0], self.core[1], r)
+        elif self.status == 'scale':
+            dx = x - self.core[0]
+            dy = y - self.core[1]
+            if (dx > 0 and dy > 0) or (dx < 0 and dy < 0):
+                QApplication.setOverrideCursor(Qt.SizeFDiagCursor)
+            else:
+                QApplication.setOverrideCursor(Qt.SizeBDiagCursor)
+            s = self.get_multiple(self.basepoint, self.core, [x, y])
+            self.temp_item.p_list = alg.scale(self.temp_plist, self.core[0], self.core[1], s)
 
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
@@ -257,12 +273,7 @@ class MyCanvas(QGraphicsView):
             self.item_dict[self.temp_id] = self.temp_item
             self.list_widget.addItem(self.temp_id)
             self.finish_draw()
-        elif self.status == 'translate':
-            QApplication.setOverrideCursor(Qt.ArrowCursor)
-            self.temp_id = ''
-            self.basepoint = [-1, -1]
-            self.temp_plist = self.temp_item.p_list[:]
-        elif self.status == 'rotate':
+        elif self.status == 'translate' or self.status == 'rotate' or self.status == 'scale':
             QApplication.setOverrideCursor(Qt.ArrowCursor)
             self.temp_id = ''
             self.basepoint = [-1, -1]
@@ -435,7 +446,7 @@ class MainWindow(QMainWindow):
         if self.item_cnt == 0:
             self.canvas_widget.start_draw_line('Naive', self.get_id())
         else:
-            self.canvas_widget.start_draw_line('Naive', str(self.item_cnt-1))
+            self.canvas_widget.start_draw_line('Naive', str(self.item_cnt - 1))
         self.statusBar().showMessage('Naive算法绘制线段')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
@@ -444,7 +455,7 @@ class MainWindow(QMainWindow):
         if self.item_cnt == 0:
             self.canvas_widget.start_draw_line('DDA', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_line('DDA', str(self.item_cnt-1))
+            self.canvas_widget.start_draw_line('DDA', str(self.item_cnt - 1))
         self.statusBar().showMessage('DDA算法绘制线段')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
@@ -453,7 +464,7 @@ class MainWindow(QMainWindow):
         if self.item_cnt == 0:
             self.canvas_widget.start_draw_line('Bresenham', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_line('Bresenham', str(self.item_cnt-1))
+            self.canvas_widget.start_draw_line('Bresenham', str(self.item_cnt - 1))
         self.statusBar().showMessage('Bresenham算法绘制线段')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
@@ -462,16 +473,17 @@ class MainWindow(QMainWindow):
         if self.item_cnt == 0:
             self.canvas_widget.start_draw_polygon('DDA', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_polygon('DDA', str(self.item_cnt-1))
+            self.canvas_widget.start_draw_polygon('DDA', str(self.item_cnt - 1))
         self.statusBar().showMessage('DDA算法绘制多边形')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
     def polygon_bresenham_action(self):
         if self.item_cnt == 0:
-            self.canvas_widget.start_draw_polygon('Bresenham', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+            self.canvas_widget.start_draw_polygon('Bresenham',
+                                                  self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_polygon('Bresenham', str(self.item_cnt-1))
+            self.canvas_widget.start_draw_polygon('Bresenham', str(self.item_cnt - 1))
         self.statusBar().showMessage('Bresenham算法绘制多边形')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
@@ -480,7 +492,7 @@ class MainWindow(QMainWindow):
         if self.item_cnt == 0:
             self.canvas_widget.start_draw_curve('bezier', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_curve('bezier', str(self.item_cnt-1))
+            self.canvas_widget.start_draw_curve('bezier', str(self.item_cnt - 1))
         self.statusBar().showMessage('bezier算法绘制曲线')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
@@ -489,7 +501,7 @@ class MainWindow(QMainWindow):
         if self.item_cnt == 0:
             self.canvas_widget.start_draw_curve('b_spline', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_curve('b_spline', str(self.item_cnt-1))
+            self.canvas_widget.start_draw_curve('b_spline', str(self.item_cnt - 1))
         self.statusBar().showMessage('b_spline算法绘制曲线')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
@@ -498,25 +510,25 @@ class MainWindow(QMainWindow):
         if self.item_cnt == 0:
             self.canvas_widget.start_draw_ellipse(self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_ellipse(str(self.item_cnt-1))
+            self.canvas_widget.start_draw_ellipse(str(self.item_cnt - 1))
         self.statusBar().showMessage('绘制椭圆')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
     def translate_action(self):
-        if not self.canvas_widget.start_translate(str(self.item_cnt-1)):
+        if not self.canvas_widget.start_translate(str(self.item_cnt - 1)):
             self.statusBar().showMessage('您还没有选择要平移的图元！')
         else:
             self.statusBar().showMessage('图元平移')
 
     def rotate_action(self):
-        if not self.canvas_widget.start_rotate(str(self.item_cnt-1)):
+        if not self.canvas_widget.start_rotate(str(self.item_cnt - 1)):
             self.statusBar().showMessage('您还没有选择要旋转的图元！')
         else:
             self.statusBar().showMessage('图元旋转')
 
     def scale_action(self):
-        if not self.canvas_widget.start_scale(str(self.item_cnt-1)):
+        if not self.canvas_widget.start_scale(str(self.item_cnt - 1)):
             self.statusBar().showMessage('您还没有选择要缩放的图元！')
         else:
             self.statusBar().showMessage('图元缩放')
