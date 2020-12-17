@@ -53,6 +53,10 @@ class MyCanvas(QGraphicsView):
                 return False
         return True
 
+    def set_color(self):
+        #TODO
+        pass
+
     def start_draw_line(self, algorithm, item_id):
         if not self.judge_finish():
             item_id = str(int(item_id) + 1)
@@ -304,6 +308,7 @@ class MyItem(QGraphicsItem):
         self.algorithm = algorithm  # 绘制算法，'DDA'、'Bresenham'、'Bezier'、'B-spline'等
         self.selected = False
         self.temp_list = None
+        self.color = QColor(0, 0, 0)
 
     def paint(self, painter: QPainter, option: QStyleOptionGraphicsItem, widget: Optional[QWidget] = ...) -> None:
         if self.item_type == 'line':
@@ -315,6 +320,7 @@ class MyItem(QGraphicsItem):
         elif self.item_type == 'curve':
             item_pixels = alg.draw_curve(self.p_list, self.algorithm)
         for p in item_pixels:
+            painter.setPen(self.color)
             painter.drawPoint(*p)
         if self.selected:
             painter.setPen(QColor(255, 0, 0))
@@ -415,6 +421,7 @@ class MainWindow(QMainWindow):
         translate_act.triggered.connect(self.translate_action)
         rotate_act.triggered.connect(self.rotate_action)
         scale_act.triggered.connect(self.scale_action)
+        set_pen_act.triggered.connect(self.set_pen_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -510,7 +517,7 @@ class MainWindow(QMainWindow):
 
     def ellipse_action(self):
         if self.item_cnt == 0:
-            self.canvas_widget.start_draw_ellipse(self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+            self.canvas_widget.start_draw_ellipse(self.get_id())
         else:
             self.canvas_widget.start_draw_ellipse(str(self.item_cnt - 1))
         self.statusBar().showMessage('绘制椭圆')
@@ -535,6 +542,9 @@ class MainWindow(QMainWindow):
         else:
             self.statusBar().showMessage('图元缩放')
 
+    def set_pen_action(self):
+        self.canvas_widget.set_color()
+        self.statusBar().showMessage('设置画笔颜色')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
