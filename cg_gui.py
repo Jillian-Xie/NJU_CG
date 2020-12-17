@@ -3,6 +3,7 @@
 
 import sys
 import cg_algorithms as alg
+import math
 from typing import Optional
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -97,6 +98,7 @@ class MyCanvas(QGraphicsView):
             self.item_id = str(int(self.item_id)+1)
         self.status = 'rotate'
         if self.selected_id == '':
+            self.basepoint = [-1, -1]
             return False
         else:
             self.temp_id = self.selected_id
@@ -109,6 +111,7 @@ class MyCanvas(QGraphicsView):
             self.item_id = str(int(self.item_id)+1)
         self.status = 'scale'
         if self.selected_id == '':
+            self.basepoint = [-1, -1]
             return False
         else:
             self.temp_id = self.selected_id
@@ -131,6 +134,7 @@ class MyCanvas(QGraphicsView):
         if self.selected_id != '':
             self.item_dict[self.selected_id].selected = False
             self.item_dict[self.selected_id].update()
+        self.basepoint = [-1, -1]
         self.selected_id = selected
         self.item_dict[selected].selected = True
         self.item_dict[selected].update()
@@ -205,6 +209,14 @@ class MyCanvas(QGraphicsView):
         self.updateScene([self.sceneRect()])
         super().mouseDoubleClickEvent(event)
 
+    def get_angle(self, p0, corepoint, p1) -> int:
+        if p0 == corepoint or p0 == p1 or p1 == corepoint:
+            return 0
+        a = math.sqrt(pow((p1[0] - p0[0]), 2) + pow((p1[1] - p0[1]), 2))
+        b = math.sqrt(pow((p1[0] - corepoint[0]), 2) + pow((p1[1] - corepoint[1]), 2))
+        c = math.sqrt(pow((corepoint[0] - p0[0]), 2) + pow((corepoint[1] - p0[1]), 2))
+        angle = math.degrees(math.acos((a * a - b * b - c * c) / (-2 * b * c)))
+        return angle
 
     def mouseMoveEvent(self, event: QMouseEvent) -> None:
         pos = self.mapToScene(event.localPos().toPoint())
@@ -223,6 +235,8 @@ class MyCanvas(QGraphicsView):
             self.temp_item.p_list = alg.translate(self.temp_plist, x - self.basepoint[0], y - self.basepoint[1])
         elif self.status == 'rotate':
             QApplication.setOverrideCursor(Qt.ClosedHandCursor)
+            r = self.get_angle(self.basepoint, self.core, [x, y])
+            self.temp_item.p_list = alg.rotate(self.temp_plist, self.core[0], self.core[1], r)
 
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
@@ -240,6 +254,11 @@ class MyCanvas(QGraphicsView):
             self.list_widget.addItem(self.temp_id)
             self.finish_draw()
         elif self.status == 'translate':
+            QApplication.setOverrideCursor(Qt.ArrowCursor)
+            self.temp_id = ''
+            self.basepoint = [-1, -1]
+            self.temp_plist = self.temp_item.p_list[:]
+        elif self.status == 'rotate':
             QApplication.setOverrideCursor(Qt.ArrowCursor)
             self.temp_id = ''
             self.basepoint = [-1, -1]
