@@ -244,10 +244,12 @@ class MyCanvas(QGraphicsView):
         elif self.status == 'translate':
             QApplication.setOverrideCursor(Qt.SizeAllCursor)
             self.temp_item.p_list = alg.translate(self.temp_plist, x - self.basepoint[0], y - self.basepoint[1])
+            self.temp_item.p_list = [[int(p[0]), int(p[1])] for p in self.temp_item.p_list]
         elif self.status == 'rotate':
             QApplication.setOverrideCursor(Qt.ClosedHandCursor)
             r = self.get_angle(self.basepoint, self.core, [x, y])
             self.temp_item.p_list = alg.rotate(self.temp_plist, self.core[0], self.core[1], r)
+            self.temp_item.p_list = [[int(p[0]), int(p[1])] for p in self.temp_item.p_list]
         elif self.status == 'scale':
             dx = x - self.core[0]
             dy = y - self.core[1]
@@ -257,7 +259,7 @@ class MyCanvas(QGraphicsView):
                 QApplication.setOverrideCursor(Qt.SizeBDiagCursor)
             s = self.get_multiple(self.basepoint, self.core, [x, y])
             self.temp_item.p_list = alg.scale(self.temp_plist, self.core[0], self.core[1], s)
-
+            self.temp_item.p_list = [[int(p[0]), int(p[1])] for p in self.temp_item.p_list]
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
 
@@ -453,7 +455,7 @@ class MainWindow(QMainWindow):
 
     def line_dda_action(self):
         if self.item_cnt == 0:
-            self.canvas_widget.start_draw_line('DDA', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+            self.canvas_widget.start_draw_line('DDA', self.get_id())
         else:
             self.canvas_widget.start_draw_line('DDA', str(self.item_cnt - 1))
         self.statusBar().showMessage('DDA算法绘制线段')
@@ -462,7 +464,7 @@ class MainWindow(QMainWindow):
 
     def line_bresenham_action(self):
         if self.item_cnt == 0:
-            self.canvas_widget.start_draw_line('Bresenham', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+            self.canvas_widget.start_draw_line('Bresenham', self.get_id())
         else:
             self.canvas_widget.start_draw_line('Bresenham', str(self.item_cnt - 1))
         self.statusBar().showMessage('Bresenham算法绘制线段')

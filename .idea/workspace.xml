@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cg_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_gui.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="310" column="26" selection-start-line="310" selection-start-column="26" selection-end-line="310" selection-end-column="26" />
+            <state relative-caret-position="30">
+              <caret line="310" column="77" lean-forward="true" selection-start-line="310" selection-start-column="11" selection-end-line="310" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -45,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="162" column="85" selection-start-line="162" selection-start-column="85" selection-end-line="162" selection-end-column="85" />
+            <state relative-caret-position="176">
+              <caret line="311" column="37" selection-start-line="311" selection-start-column="37" selection-end-line="311" selection-end-column="37" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
@@ -65,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ellipse_action</find>
       <find>finish_draw</find>
       <find>start_draw_line</find>
       <find>get_id</find>
@@ -95,6 +95,7 @@
       <find>corePoint</find>
       <find>basepoint = [-1, -1]</find>
       <find>start_draw_polygon</find>
+      <find>pain</find>
     </findStrings>
     <replaceStrings>
       <replace>dx2</replace>
@@ -224,12 +225,12 @@
       <workItem from="1608133143616" duration="2154000" />
       <workItem from="1608167728599" duration="3871000" />
       <workItem from="1608175039654" duration="4220000" />
-      <workItem from="1608198473355" duration="6584000" />
+      <workItem from="1608198473355" duration="8876000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178627000" />
+    <option name="totallyTimeSpent" value="180919000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="620" y="0" width="666" height="688" extended-state="0" />
@@ -240,14 +241,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2679856" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.2679856" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.15467626" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" visible="true" weight="0.21223022" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.67805755" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.1852518" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.67673177" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.4991119" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016892" side_tool="true" weight="0.397482" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -318,13 +319,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>120</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>181</line>
-          <option name="timeStamp" value="3" />
+          <line>257</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -338,12 +334,13 @@
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="len(p_list)" language="Python" />
-        <watch expression="self.temp_id" language="Python" />
+        <watch expression="[p_list[0][0] * s + x * (1 - s), p_list[0][1] * s + y * (1 - s)]" language="Python" />
+        <watch expression="[[p[0] * s + x * (1 - s), p[1] * s + y * (1 - s)] for p in p_list]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1608206338663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1608217196421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -364,6 +361,26 @@
       </expression>
     </expressions>
     <expressions id="watch">
+      <expression>
+        <expression-string>self.temp_item.p_list</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>[[p[0] * s + x * (1 - s), p[1] * s + y * (1 - s)] for p in p_list]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>[p_list[0][0] * s + x * (1 - s), p_list[0][1] * s + y * (1 - s)]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>[p[0] * s + x * (1 - s), p[1] * s + y * (1 - s)]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>self.temp_id</expression-string>
         <language-id>Python</language-id>
@@ -391,11 +408,6 @@
       </expression>
       <expression>
         <expression-string>self.temp_item</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.status</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -450,15 +462,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="310" column="26" selection-start-line="310" selection-start-column="26" selection-end-line="310" selection-end-column="26" />
+        <state relative-caret-position="30">
+          <caret line="310" column="77" lean-forward="true" selection-start-line="310" selection-start-column="11" selection-end-line="310" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="162" column="85" selection-start-line="162" selection-start-column="85" selection-end-line="162" selection-end-column="85" />
+        <state relative-caret-position="176">
+          <caret line="311" column="37" selection-start-line="311" selection-start-column="37" selection-end-line="311" selection-end-column="37" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
           </folding>
