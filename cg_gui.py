@@ -21,6 +21,7 @@ class MyCanvas(QGraphicsView):
         self.list_widget = None
         self.item_dict = {}
         self.selected_id = ''
+        self.color = QColor(0, 0, 0)
 
         self.status = ''
         self.temp_algorithm = ''
@@ -53,9 +54,15 @@ class MyCanvas(QGraphicsView):
                 return False
         return True
 
-    def set_color(self):
-        #TODO
-        pass
+    def set_color(self, item_id):
+        color_chosen = QColorDialog()
+        self.color = color_chosen.getColor()
+        if not self.judge_finish():
+            self.temp_id = str(int(item_id) + 1)
+        if self.selected_id != '':
+            self.temp_item.color = self.color
+        # self.status = ''
+        # self.temp_item = None
 
     def start_draw_line(self, algorithm, item_id):
         if not self.judge_finish():
@@ -155,20 +162,20 @@ class MyCanvas(QGraphicsView):
         x = int(pos.x())
         y = int(pos.y())
         if self.status == 'line':
-            self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'polygon':
             if self.temp_item is None:
-                self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+                self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
                 self.scene().addItem(self.temp_item)
             else:
                 self.temp_item.p_list.append([x, y])
         elif self.status == 'ellipse':
-            self.temp_item = MyItem(self.temp_id, self.status, [[x-1, y+1], [x+1, y-1]], self.temp_algorithm)
+            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x-1, y+1], [x+1, y-1]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'curve':
             if self.temp_item is None:
-                self.temp_item = MyItem(self.temp_id, self.status, [[x, y]], self.temp_algorithm)
+                self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y]], self.temp_algorithm)
                 self.scene().addItem(self.temp_item)
             else:
                 self.temp_item.p_list.append([x, y])
@@ -198,10 +205,10 @@ class MyCanvas(QGraphicsView):
         x = int(pos.x())
         y = int(pos.y())
         if self.status == 'line':
-            self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'ellipse':
-            self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'polygon':
             if self.temp_item is not None:
@@ -292,7 +299,7 @@ class MyItem(QGraphicsItem):
     自定义图元类，继承自QGraphicsItem
     """
 
-    def __init__(self, item_id: str, item_type: str, p_list: list, algorithm: str = '', parent: QGraphicsItem = None):
+    def __init__(self, color: QColor, item_id: str, item_type: str, p_list: list, algorithm: str = '', parent: QGraphicsItem = None):
         """
 
         :param item_id: 图元ID
@@ -308,7 +315,7 @@ class MyItem(QGraphicsItem):
         self.algorithm = algorithm  # 绘制算法，'DDA'、'Bresenham'、'Bezier'、'B-spline'等
         self.selected = False
         self.temp_list = None
-        self.color = QColor(0, 0, 0)
+        self.color = color
 
     def paint(self, painter: QPainter, option: QStyleOptionGraphicsItem, widget: Optional[QWidget] = ...) -> None:
         if self.item_type == 'line':
@@ -543,8 +550,8 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage('图元缩放')
 
     def set_pen_action(self):
-        self.canvas_widget.set_color()
-        self.statusBar().showMessage('设置画笔颜色')
+        self.canvas_widget.set_color(str(self.item_cnt - 1))
+        # self.statusBar().showMessage('设置画笔颜色')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
