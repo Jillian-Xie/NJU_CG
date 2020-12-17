@@ -160,7 +160,7 @@ class MyCanvas(QGraphicsView):
             else:
                 self.temp_item.p_list.append([x, y])
         elif self.status == 'ellipse':
-            self.temp_item = MyItem(self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.temp_item = MyItem(self.temp_id, self.status, [[x-1, y+1], [x+1, y-1]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'curve':
             if self.temp_item is None:
