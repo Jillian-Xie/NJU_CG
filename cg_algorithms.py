@@ -3,6 +3,8 @@
 
 # 本文件只允许依赖math库
 
+import math
+
 def draw_line(p_list, algorithm):
     """绘制线段
 
@@ -289,7 +291,12 @@ def rotate(p_list, x, y, r):
     :param r: (int) 顺时针旋转角度（°）
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 变换后的图元参数
     """
-    pass
+    rad = r * math.pi / 180
+    return [
+        [int(x + (p[0] - x) * math.cos(rad) - (p[1] - y) * math.sin(rad)),
+         int(y + (p[0] - x) * math.sin(rad) + (p[1] - y) * math.cos(rad))]
+        for p in p_list
+    ]
 
 
 def scale(p_list, x, y, s):
@@ -301,7 +308,7 @@ def scale(p_list, x, y, s):
     :param s: (float) 缩放倍数
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 变换后的图元参数
     """
-    pass
+    return [[p[0] * s + x * (1 - s), p[1] * s + y * (1 - s)] for p in p_list]
 
 
 def clip(p_list, x_min, y_min, x_max, y_max, algorithm):

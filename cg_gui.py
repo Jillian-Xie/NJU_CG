@@ -25,10 +25,11 @@ class MyCanvas(QGraphicsView):
         self.temp_algorithm = ''
         self.temp_id = ''
         self.temp_item = None
-#----
+
         self.basepoint = [-1, -1]
+        self.core = [-1, -1]
         self.temp_plist = []
-#----
+
     # 考虑鲁棒性
     def judge_finish(self) -> bool:
         QApplication.setOverrideCursor(Qt.ArrowCursor)
@@ -91,6 +92,30 @@ class MyCanvas(QGraphicsView):
             self.basepoint = [-1, -1]
             return True
 
+    def start_rotate(self) -> bool:
+        if not self.judge_finish():
+            self.item_id = str(int(self.item_id)+1)
+        self.status = 'rotate'
+        if self.selected_id == '':
+            return False
+        else:
+            self.temp_id = self.selected_id
+            self.temp_item = self.item_dict[self.temp_id]
+            self.basepoint = [-1, -1]
+            return True
+
+    def start_scale(self):
+        if not self.judge_finish():
+            self.item_id = str(int(self.item_id)+1)
+        self.status = 'scale'
+        if self.selected_id == '':
+            return False
+        else:
+            self.temp_id = self.selected_id
+            self.temp_item = self.item_dict[self.temp_id]
+            self.basepoint = [-1, -1]
+            return True
+
     def finish_draw(self):
         QApplication.setOverrideCursor(Qt.ArrowCursor)
         self.temp_item = None
@@ -137,6 +162,20 @@ class MyCanvas(QGraphicsView):
         elif self.status == 'translate':
             self.basepoint = [x, y]
             self.temp_plist = self.temp_item.p_list[:]
+        elif self.status == 'rotate':
+            if self.basepoint == [-1, -1]:
+                self.basepoint = [x, y]
+                self.temp_plist = self.temp_item.p_list[:]
+                x_list = [x[0] for x in self.temp_plist]
+                y_list = [y[1] for y in self.temp_plist]
+                self.core = [(min(x_list) + max(x_list)) / 2, (min(y_list) + max(y_list)) / 2]
+        elif self.status == 'scale':
+            if self.basepoint == [-1, -1]:
+                self.basepoint = [x, y]
+                self.temp_plist = self.temp_item.p_list[:]
+                x_list = [x[0] for x in self.p_list]
+                y_list = [y[1] for y in self.p_list]
+                self.core = [(min(x_list) + max(x_list)) / 2, (min(y_list) + max(y_list)) / 2]
 
         self.updateScene([self.sceneRect()])
         super().mousePressEvent(event)
@@ -182,6 +221,9 @@ class MyCanvas(QGraphicsView):
         elif self.status == 'translate':
             QApplication.setOverrideCursor(Qt.SizeAllCursor)
             self.temp_item.p_list = alg.translate(self.temp_plist, x - self.basepoint[0], y - self.basepoint[1])
+        elif self.status == 'rotate':
+            QApplication.setOverrideCursor(Qt.ClosedHandCursor)
+
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
 
@@ -200,6 +242,7 @@ class MyCanvas(QGraphicsView):
         elif self.status == 'translate':
             QApplication.setOverrideCursor(Qt.ArrowCursor)
             self.temp_id = ''
+            self.basepoint = [-1, -1]
             self.temp_plist = self.temp_item.p_list[:]
         super().mouseReleaseEvent(event)
 
@@ -334,6 +377,8 @@ class MainWindow(QMainWindow):
         curve_bezier_act.triggered.connect(self.curve_bezier_action)
         curve_b_spline_act.triggered.connect(self.curve_b_spline_action)
         translate_act.triggered.connect(self.translate_action)
+        rotate_act.triggered.connect(self.rotate_action)
+        scale_act.triggered.connect(self.scale_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -437,9 +482,21 @@ class MainWindow(QMainWindow):
 
     def translate_action(self):
         if not self.canvas_widget.start_translate():
-            self.statusBar().showMessage('请选中图元')
+            self.statusBar().showMessage('选择图元')
         else:
             self.statusBar().showMessage('图元平移')
+
+    def rotate_action(self):
+        if not self.canvas_widget.start_rotate():
+            self.statusBar().showMessage('选择图元')
+        else:
+            self.statusBar().showMessage('图元旋转')
+
+    def scale_action(self):
+        if not self.canvas_widget.start_scale():
+            self.statusBar().showMessage('选择图元')
+        else:
+            self.statusBar().showMessage('图元缩放')
 
 
 if __name__ == '__main__':
