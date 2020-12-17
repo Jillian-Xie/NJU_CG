@@ -217,10 +217,9 @@ class MyCanvas(QGraphicsView):
     def get_angle(self, p0, corepoint, p1) -> int:
         if p0 == corepoint or p0 == p1 or p1 == corepoint:
             return 0
-        a = math.sqrt(pow((p1[0] - p0[0]), 2) + pow((p1[1] - p0[1]), 2))
-        b = math.sqrt(pow((p1[0] - corepoint[0]), 2) + pow((p1[1] - corepoint[1]), 2))
-        c = math.sqrt(pow((corepoint[0] - p0[0]), 2) + pow((corepoint[1] - p0[1]), 2))
-        angle = math.degrees(math.acos((a * a - b * b - c * c) / (-2 * b * c)))
+        angle0 = math.atan2(p0[1]-corepoint[1], p0[0]-corepoint[0])
+        angle1 = math.atan2(p1[1]-corepoint[1], p1[0]-corepoint[0])
+        angle = math.degrees(angle1-angle0)
         return angle
 
     def mouseMoveEvent(self, event: QMouseEvent) -> None:
@@ -434,7 +433,7 @@ class MainWindow(QMainWindow):
 
     def line_naive_action(self):
         if self.item_cnt == 0:
-            self.canvas_widget.start_draw_line('Naive', self.get_id()) # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+            self.canvas_widget.start_draw_line('Naive', self.get_id())
         else:
             self.canvas_widget.start_draw_line('Naive', str(self.item_cnt-1))
         self.statusBar().showMessage('Naive算法绘制线段')
