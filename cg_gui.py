@@ -63,6 +63,8 @@ class MyCanvas(QGraphicsView):
     def start_draw_polygon(self, algorithm, item_id):
         if not self.judge_finish():
             item_id = str(int(item_id)+1)
+        if self.status == '' or self.status == 'translate' or self.status == 'rotate' or self.status == 'scale' or self.status == 'clip':
+            self.temp_item = None
         self.status = 'polygon'
         self.temp_algorithm = algorithm
         self.temp_id = item_id
@@ -76,13 +78,15 @@ class MyCanvas(QGraphicsView):
     def start_draw_curve(self, algorithm, item_id):
         if not self.judge_finish():
             item_id = str(int(item_id)+1)
+        if self.status == '' or self.status == 'translate' or self.status == 'rotate' or self.status == 'scale' or self.status == 'clip':
+            self.temp_item = None
         self.status = 'curve'
         self.temp_algorithm = algorithm
         self.temp_id = item_id
 
-    def start_translate(self) -> bool:
+    def start_translate(self, item_id) -> bool:
         if not self.judge_finish():
-            self.item_id = str(int(self.item_id)+1)
+            self.temp_id = str(int(item_id)+1)
         self.status = 'translate'
         if self.selected_id == '':
             return False
@@ -93,9 +97,9 @@ class MyCanvas(QGraphicsView):
             self.basepoint = [-1, -1]
             return True
 
-    def start_rotate(self) -> bool:
+    def start_rotate(self, item_id) -> bool:
         if not self.judge_finish():
-            self.item_id = str(int(self.item_id)+1)
+            self.temp_id = str(int(item_id)+1)
         self.status = 'rotate'
         if self.selected_id == '':
             self.basepoint = [-1, -1]
@@ -106,9 +110,9 @@ class MyCanvas(QGraphicsView):
             self.basepoint = [-1, -1]
             return True
 
-    def start_scale(self):
+    def start_scale(self, item_id):
         if not self.judge_finish():
-            self.item_id = str(int(self.item_id)+1)
+            self.temp_id = str(int(item_id)+1)
         self.status = 'scale'
         if self.selected_id == '':
             self.basepoint = [-1, -1]
@@ -140,6 +144,7 @@ class MyCanvas(QGraphicsView):
         self.item_dict[selected].update()
         self.temp_item = self.item_dict[selected]
         self.updateScene([self.sceneRect()])
+        self.status = ''
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         pos = self.mapToScene(event.localPos().toPoint())
@@ -500,19 +505,19 @@ class MainWindow(QMainWindow):
         self.canvas_widget.clear_selection()
 
     def translate_action(self):
-        if not self.canvas_widget.start_translate():
+        if not self.canvas_widget.start_translate(str(self.item_cnt-1)):
             self.statusBar().showMessage('选择图元')
         else:
             self.statusBar().showMessage('图元平移')
 
     def rotate_action(self):
-        if not self.canvas_widget.start_rotate():
+        if not self.canvas_widget.start_rotate(str(self.item_cnt-1)):
             self.statusBar().showMessage('选择图元')
         else:
             self.statusBar().showMessage('图元旋转')
 
     def scale_action(self):
-        if not self.canvas_widget.start_scale():
+        if not self.canvas_widget.start_scale(str(self.item_cnt-1)):
             self.statusBar().showMessage('选择图元')
         else:
             self.statusBar().showMessage('图元缩放')
