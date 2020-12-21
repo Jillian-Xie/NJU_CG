@@ -388,7 +388,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.item_cnt = 0
-        self.length = 600
+        self.w = 600
+        self.h = 600
 
         # 使用QListWidget来记录已有的图元，并用于选择图元。注：这是图元选择的简单实现方法，更好的实现是在画布中直接用鼠标选择图元
         self.list_widget = QListWidget(self)
@@ -409,6 +410,7 @@ class MainWindow(QMainWindow):
         reset_canvas_act = file_menu.addAction('调整画布大小')
         clear_canvas_act = file_menu.addAction('清空画布')
         exit_act = file_menu.addAction('退出')
+        save_act = file_menu.addAction('保存')
         draw_menu = menubar.addMenu('绘制')
         line_menu = draw_menu.addMenu('线段')
         line_naive_act = line_menu.addAction('Naive')
@@ -445,6 +447,7 @@ class MainWindow(QMainWindow):
         set_pen_act.triggered.connect(self.set_pen_action)
         reset_canvas_act.triggered.connect(self.reset_canvas_action)
         clear_canvas_act.triggered.connect(self.clear_canvas_action)
+        save_act.triggered.connect(self.save_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -456,7 +459,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
         self.statusBar().showMessage('空闲')
         self.resize(600, 600)
-        self.setWindowTitle('CG Project')
+        self.setWindowTitle('181860112 谢靓静')
 
         # 设置窗口图标
         self.setWindowIcon(QIcon('../picture/画笔.png'))
@@ -598,13 +601,19 @@ class MainWindow(QMainWindow):
             if self.is_number(heightEdit.text()) and self.is_number(widthEdit.text()):
                 height = int(heightEdit.text())
                 width = int(widthEdit.text())
-                s = min(height, width) / self.length
-                self.length = min(height, width)
+                s1 = height / self.h
+                s2 = width / self.w
+                s = 1
+                if s1 <=1 and s2<=1:
+                    s = max(s1, s2)
+                else:
+                    s = min(s1, s2)
+                self.h = height
+                self.w = width
                 for item in self.canvas_widget.item_dict:
                     self.canvas_widget.item_dict[item].p_list = alg.scale(self.canvas_widget.item_dict[item].p_list, 0, 0, s)
                 self.scene.setSceneRect(0, 0, width, height)
                 self.canvas_widget.setFixedSize(width, height)
-
 
     def clear_canvas_action(self):
         self.item_cnt = 0
@@ -613,6 +622,13 @@ class MainWindow(QMainWindow):
         self.list_widget.clear()
         self.canvas_widget.clear_canvas()
 
+    def save_action(self):
+        dialog = QFileDialog()
+        filename = dialog.getSaveFileName(filter="Image Files(*.jpg *.png *.bmp)")
+        if not filename[0] == '':
+            pixmap = QPixmap()
+            pixmap = self.canvas_widget.grab(self.canvas_widget.sceneRect().toRect())
+            pixmap.save(filename[0])
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
