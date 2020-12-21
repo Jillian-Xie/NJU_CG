@@ -134,13 +134,8 @@ class MyCanvas(QGraphicsView):
         self.basepoint = [-1, -1]
         return True
 
-    def reset_canvas(self):
-
-        pass
-
     def clear_canvas(self):
-        for item_id in enumerate(self.item_dict):
-            self.scene().removeItem(self.item_dict[item_id[1]])
+        self.scene().clear()
         self.updateScene([self.sceneRect()])
         self.item_dict = {}
         self.selected_id = ''
@@ -186,7 +181,8 @@ class MyCanvas(QGraphicsView):
             else:
                 self.temp_item.p_list.append([x, y])
         elif self.status == 'ellipse':
-            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x-1, y+1], [x+1, y-1]], self.temp_algorithm)
+            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x - 1, y + 1], [x + 1, y - 1]],
+                                    self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'curve':
             if self.temp_item is None:
@@ -314,7 +310,8 @@ class MyItem(QGraphicsItem):
     自定义图元类，继承自QGraphicsItem
     """
 
-    def __init__(self, color: QColor, item_id: str, item_type: str, p_list: list, algorithm: str = '', parent: QGraphicsItem = None):
+    def __init__(self, color: QColor, item_id: str, item_type: str, p_list: list, algorithm: str = '',
+                 parent: QGraphicsItem = None):
         """
 
         :param item_id: 图元ID
@@ -570,15 +567,48 @@ class MainWindow(QMainWindow):
     def set_pen_action(self):
         self.canvas_widget.set_color(str(self.item_cnt - 1))
 
+    def is_number(self, s):
+        try:
+            float(s)
+            return True
+        except ValueError:
+            pass
+        try:
+            import unicodedata
+            unicodedata.numeric(s)
+            return True
+        except (TypeError, ValueError):
+            pass
+        return False
+
     def reset_canvas_action(self):
-        self.canvas_widget.reset_canvas() # TODO
+        dialog = QDialog()
+        layout = QFormLayout(dialog)
+        heightEdit = QLineEdit(dialog)
+        widthEdit = QLineEdit(dialog)
+        buttonBox = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel, dialog)
+        buttonBox.accepted.connect(dialog.accept)
+        buttonBox.rejected.connect(dialog.reject)
+        layout.addRow("画布高度：", heightEdit)
+        layout.addRow("画布宽度：", widthEdit)
+        layout.addWidget(buttonBox)
+        dialog.setWindowTitle("请输入两个整数")
+        if dialog.exec():
+            if self.is_number(heightEdit.text()) and self.is_number(widthEdit.text()):
+                height = int(heightEdit.text())
+                width = int(widthEdit.text())
+                self.scene.setSceneRect(0, 0, width, height)
+                self.canvas_widget.setFixedSize(height, width)
+        self.list_widget.clearSelection()
+        self.canvas_widget.clear_selection()
 
     def clear_canvas_action(self):
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
         self.item_cnt = 0
         self.list_widget.clear()
-        self.canvas_widget.clear_canvas() # TODO
+        self.canvas_widget.clear_canvas()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

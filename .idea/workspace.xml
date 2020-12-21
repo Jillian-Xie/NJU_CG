@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cg_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_cli.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cg_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_gui.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7770">
-              <caret line="160" selection-start-line="160" selection-end-line="160" />
+            <state relative-caret-position="362">
+              <caret line="598" column="45" lean-forward="true" selection-start-line="598" selection-start-column="45" selection-end-line="598" selection-end-column="45" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
@@ -80,8 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>finish</find>
-      <find>print</find>
       <find>ell</find>
       <find>bug</find>
       <find>line_naive_action</find>
@@ -110,6 +107,8 @@
       <find>item_cn</find>
       <find>addItem</find>
       <find>list_widget</find>
+      <find>selection_changed</find>
+      <find>dialog</find>
     </findStrings>
     <replaceStrings>
       <replace>dx2</replace>
@@ -131,11 +130,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-2" />
-    <option name="y" value="2" />
-    <option name="width" value="1002" />
-    <option name="height" value="1040" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="930" />
+    <option name="width" value="1000" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -247,30 +245,30 @@
       <workItem from="1608364136614" duration="213000" />
       <workItem from="1608378571237" duration="612000" />
       <workItem from="1608395869906" duration="1598000" />
-      <workItem from="1608522941123" duration="9510000" />
+      <workItem from="1608522941123" duration="15429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197333000" />
+    <option name="totallyTimeSpent" value="203252000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="744" y="0" width="800" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17962466" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.361186" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36402267" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" visible="true" weight="0.24929178" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18051577" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.24929178" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.6762178" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.23925501" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.24207492" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016892" side_tool="true" weight="0.397482" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -341,12 +339,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>141</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>574</line>
+          <line>605</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
@@ -368,7 +361,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1608538372583" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1608553155687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -508,8 +501,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7770">
-          <caret line="160" selection-start-line="160" selection-end-line="160" />
+        <state relative-caret-position="362">
+          <caret line="598" column="45" lean-forward="true" selection-start-line="598" selection-start-column="45" selection-end-line="598" selection-end-column="45" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
           </folding>
