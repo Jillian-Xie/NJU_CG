@@ -308,7 +308,7 @@ def scale(p_list, x, y, s):
     :param s: (float) 缩放倍数
     :return: (list of list of int: [[x_0, y_0], [x_1, y_1], [x_2, y_2], ...]) 变换后的图元参数
     """
-    return [[p[0] * s + x * (1 - s), p[1] * s + y * (1 - s)] for p in p_list]
+    return [[int(p[0] * s + x * (1 - s)), int(p[1] * s + y * (1 - s))] for p in p_list]
 
 
 def clip(p_list, x_min, y_min, x_max, y_max, algorithm):

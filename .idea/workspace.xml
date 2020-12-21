@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cg_algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_algorithms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cg_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_gui.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="228" selection-start-line="228" selection-end-line="228" />
+            <state relative-caret-position="170">
+              <caret line="304" column="39" selection-start-line="304" selection-start-column="39" selection-end-line="304" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -47,23 +47,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cg_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="598" column="45" lean-forward="true" selection-start-line="598" selection-start-column="45" selection-end-line="598" selection-end-column="45" />
+            <state relative-caret-position="128">
+              <caret line="598" column="47" lean-forward="true" selection-start-line="598" selection-start-column="47" selection-end-line="598" selection-end-column="47" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
+                <element signature="e#23154#23430#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="1255" column="8" selection-start-line="1255" selection-start-column="8" selection-end-line="1255" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -79,7 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ell</find>
       <find>bug</find>
       <find>line_naive_action</find>
       <find>paint(</find>
@@ -109,6 +100,7 @@
       <find>list_widget</find>
       <find>selection_changed</find>
       <find>dialog</find>
+      <find>clear</find>
     </findStrings>
     <replaceStrings>
       <replace>dx2</replace>
@@ -124,9 +116,9 @@
         <option value="$PROJECT_DIR$/hello.py" />
         <option value="$PROJECT_DIR$/other_code.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/cg_algorithms.py" />
         <option value="$PROJECT_DIR$/cg_cli.py" />
         <option value="$PROJECT_DIR$/cg_gui.py" />
+        <option value="$PROJECT_DIR$/cg_algorithms.py" />
       </list>
     </option>
   </component>
@@ -245,12 +237,12 @@
       <workItem from="1608364136614" duration="213000" />
       <workItem from="1608378571237" duration="612000" />
       <workItem from="1608395869906" duration="1598000" />
-      <workItem from="1608522941123" duration="15429000" />
+      <workItem from="1608522941123" duration="17558000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203252000" />
+    <option name="totallyTimeSpent" value="205381000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="744" y="0" width="800" height="830" extended-state="0" />
@@ -262,7 +254,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18051577" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.24929178" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.3381089" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -339,8 +331,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>605</line>
+          <line>609</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/cg_gui.py</url>
+          <line>603</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/cg_gui.py</url>
+          <line>601</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -353,15 +355,15 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="self.temp_item.p_list" language="Python" />
-        <watch expression="self.item_dict['0']" language="Python" />
+        <watch expression="heightEdit.text()" language="Python" />
+        <watch expression="self.canvas_widget.item_dict[item]" language="Python" />
         <watch expression="self.item_dict" language="Python" />
         <watch expression="self.item_dict[item_id[1]]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1608553155687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="Python3.8 Coverage Results" MODIFIED="1608556022841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -382,6 +384,26 @@
       </expression>
     </expressions>
     <expressions id="watch">
+      <expression>
+        <expression-string>self.canvas_widget.item_dict[item]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>item[item[0]]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>item[item]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>heightEdit.text()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>self.item_dict[item_id[1]]</expression-string>
         <language-id>Python</language-id>
@@ -409,26 +431,6 @@
       </expression>
       <expression>
         <expression-string>self.item_dict[item_id]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>item_dict[item_id]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.temp_item.p_list</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[[p[0] * s + x * (1 - s), p[1] * s + y * (1 - s)] for p in p_list]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[p_list[0][0] * s + x * (1 - s), p_list[0][1] * s + y * (1 - s)]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -471,13 +473,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="228" selection-start-line="228" selection-end-line="228" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cg_cli.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -494,18 +489,26 @@
     </entry>
     <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="1255" column="8" selection-start-line="1255" selection-start-column="8" selection-end-line="1255" selection-end-column="8" />
+        <state relative-caret-position="137">
+          <caret line="734" column="9" lean-forward="true" selection-start-line="734" selection-start-column="8" selection-end-line="734" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="598" column="45" lean-forward="true" selection-start-line="598" selection-start-column="45" selection-end-line="598" selection-end-column="45" />
+        <state relative-caret-position="128">
+          <caret line="598" column="47" lean-forward="true" selection-start-line="598" selection-start-column="47" selection-end-line="598" selection-end-column="47" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
+            <element signature="e#23154#23430#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="304" column="39" selection-start-line="304" selection-start-column="39" selection-end-line="304" selection-end-column="39" />
         </state>
       </provider>
     </entry>

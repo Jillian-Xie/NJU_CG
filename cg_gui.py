@@ -153,7 +153,7 @@ class MyCanvas(QGraphicsView):
             self.selected_id = ''
 
     def selection_changed(self, selected):
-        if selected == '':
+        if self.main_window.item_cnt == 0:
             return
         self.main_window.statusBar().showMessage('图元选择： %s' % selected)
         if self.selected_id != '':
@@ -388,6 +388,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.item_cnt = 0
+        self.length = 600
 
         # 使用QListWidget来记录已有的图元，并用于选择图元。注：这是图元选择的简单实现方法，更好的实现是在画布中直接用鼠标选择图元
         self.list_widget = QListWidget(self)
@@ -597,15 +598,18 @@ class MainWindow(QMainWindow):
             if self.is_number(heightEdit.text()) and self.is_number(widthEdit.text()):
                 height = int(heightEdit.text())
                 width = int(widthEdit.text())
+                s = min(height, width) / self.length
+                self.length = min(height, width)
+                for item in self.canvas_widget.item_dict:
+                    self.canvas_widget.item_dict[item].p_list = alg.scale(self.canvas_widget.item_dict[item].p_list, 0, 0, s)
                 self.scene.setSceneRect(0, 0, width, height)
-                self.canvas_widget.setFixedSize(height, width)
-        self.list_widget.clearSelection()
-        self.canvas_widget.clear_selection()
+                self.canvas_widget.setFixedSize(width, height)
+
 
     def clear_canvas_action(self):
+        self.item_cnt = 0
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
-        self.item_cnt = 0
         self.list_widget.clear()
         self.canvas_widget.clear_canvas()
 
