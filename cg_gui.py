@@ -22,6 +22,7 @@ class MyCanvas(QGraphicsView):
         self.item_dict = {}
         self.selected_id = ''
         self.color = QColor(0, 0, 0)
+        self.pen_width = 2
 
         self.status = ''
         self.temp_algorithm = ''
@@ -60,9 +61,31 @@ class MyCanvas(QGraphicsView):
         if not self.judge_finish():
             self.temp_id = str(int(item_id) + 1)
         if self.selected_id != '':
-            self.temp_item.color = self.color
-        # self.status = ''
-        # self.temp_item = None
+            self.temp_item.pen.setColor(self.color)
+
+    def set_thin_width(self, item_id):
+        self.pen_width = 1
+        if not self.judge_finish():
+            self.temp_id = str(int(item_id) + 1)
+        if self.selected_id != '':
+            self.temp_item.pen.setWidth(self.pen_width)
+        self.updateScene([self.sceneRect()])
+
+    def set_mid_width(self, item_id):
+        self.pen_width = 2
+        if not self.judge_finish():
+            self.temp_id = str(int(item_id) + 1)
+        if self.selected_id != '':
+            self.temp_item.pen.setWidth(self.pen_width)
+        self.updateScene([self.sceneRect()])
+
+    def set_thick_width(self, item_id):
+        self.pen_width = 3
+        if not self.judge_finish():
+            self.temp_id = str(int(item_id) + 1)
+        if self.selected_id != '':
+            self.temp_item.pen.setWidth(self.pen_width)
+        self.updateScene([self.sceneRect()])
 
     def start_draw_line(self, algorithm, item_id):
         if not self.judge_finish():
@@ -172,21 +195,21 @@ class MyCanvas(QGraphicsView):
         x = int(pos.x())
         y = int(pos.y())
         if self.status == 'line':
-            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.temp_item = MyItem(self.pen_width, self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'polygon':
             if self.temp_item is None:
-                self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+                self.temp_item = MyItem(self.pen_width, self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
                 self.scene().addItem(self.temp_item)
             else:
                 self.temp_item.p_list.append([x, y])
         elif self.status == 'ellipse':
-            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x - 1, y + 1], [x + 1, y - 1]],
+            self.temp_item = MyItem(self.pen_width, self.color, self.temp_id, self.status, [[x - 1, y + 1], [x + 1, y - 1]],
                                     self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'curve':
             if self.temp_item is None:
-                self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y]], self.temp_algorithm)
+                self.temp_item = MyItem(self.pen_width, self.color, self.temp_id, self.status, [[x, y]], self.temp_algorithm)
                 self.scene().addItem(self.temp_item)
             else:
                 self.temp_item.p_list.append([x, y])
@@ -216,10 +239,10 @@ class MyCanvas(QGraphicsView):
         x = int(pos.x())
         y = int(pos.y())
         if self.status == 'line':
-            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.temp_item = MyItem(self.pen_width, self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'ellipse':
-            self.temp_item = MyItem(self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
+            self.temp_item = MyItem(self.pen_width, self.color, self.temp_id, self.status, [[x, y], [x, y]], self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'polygon':
             if self.temp_item is not None:
@@ -310,7 +333,7 @@ class MyItem(QGraphicsItem):
     自定义图元类，继承自QGraphicsItem
     """
 
-    def __init__(self, color: QColor, item_id: str, item_type: str, p_list: list, algorithm: str = '',
+    def __init__(self, pen_width: int, color: QColor, item_id: str, item_type: str, p_list: list, algorithm: str = '',
                  parent: QGraphicsItem = None):
         """
 
@@ -327,7 +350,14 @@ class MyItem(QGraphicsItem):
         self.algorithm = algorithm  # 绘制算法，'DDA'、'Bresenham'、'Bezier'、'B-spline'等
         self.selected = False
         self.temp_list = None
-        self.color = color
+        self.pen = QPen()
+        self.pen_selected = QPen()
+        self.pen.setColor(color)
+        self.pen.setWidth(pen_width)
+        self.pen.setStyle(Qt.SolidLine)
+        self.pen.setCapStyle(Qt.SquareCap)
+        self.pen_selected.setColor(QColor(0, 0, 255))
+        self.pen_selected.setStyle(Qt.DashLine)
 
     def paint(self, painter: QPainter, option: QStyleOptionGraphicsItem, widget: Optional[QWidget] = ...) -> None:
         if self.item_type == 'line':
@@ -339,10 +369,10 @@ class MyItem(QGraphicsItem):
         elif self.item_type == 'curve':
             item_pixels = alg.draw_curve(self.p_list, self.algorithm)
         for p in item_pixels:
-            painter.setPen(self.color)
+            painter.setPen(self.pen)
             painter.drawPoint(*p)
         if self.selected:
-            painter.setPen(QColor(255, 0, 0))
+            painter.setPen(self.pen_selected)
             painter.drawRect(self.boundingRect())
 
     def boundingRect(self) -> QRectF:
@@ -406,11 +436,16 @@ class MainWindow(QMainWindow):
         # 设置菜单栏
         menubar = self.menuBar()
         file_menu = menubar.addMenu('文件')
-        set_pen_act = file_menu.addAction('设置画笔')
         reset_canvas_act = file_menu.addAction('调整画布大小')
         clear_canvas_act = file_menu.addAction('清空画布')
         exit_act = file_menu.addAction('退出')
         save_act = file_menu.addAction('保存')
+        pen_menu = menubar.addMenu('画笔')
+        set_pen_act = pen_menu.addAction('设置画笔颜色')
+        set_width_act = pen_menu.addMenu('设置画笔宽度')
+        set_thin_act = set_width_act.addAction("细笔画")
+        set_mid_act = set_width_act.addAction("中笔画")
+        set_thick_act = set_width_act.addAction("粗笔画")
         draw_menu = menubar.addMenu('绘制')
         line_menu = draw_menu.addMenu('线段')
         line_naive_act = line_menu.addAction('Naive')
@@ -445,6 +480,9 @@ class MainWindow(QMainWindow):
         rotate_act.triggered.connect(self.rotate_action)
         scale_act.triggered.connect(self.scale_action)
         set_pen_act.triggered.connect(self.set_pen_action)
+        set_thin_act.triggered.connect(self.set_thin_action)
+        set_mid_act.triggered.connect(self.set_mid_action)
+        set_thick_act.triggered.connect(self.set_thick_action)
         reset_canvas_act.triggered.connect(self.reset_canvas_action)
         clear_canvas_act.triggered.connect(self.clear_canvas_action)
         save_act.triggered.connect(self.save_action)
@@ -571,6 +609,15 @@ class MainWindow(QMainWindow):
     def set_pen_action(self):
         self.canvas_widget.set_color(str(self.item_cnt - 1))
 
+    def set_thin_action(self):
+        self.canvas_widget.set_thin_width(str(self.item_cnt - 1))
+
+    def set_mid_action(self):
+        self.canvas_widget.set_mid_width(str(self.item_cnt - 1))
+
+    def set_thick_action(self):
+        self.canvas_widget.set_thick_width(str(self.item_cnt - 1))
+
     def is_number(self, s):
         try:
             float(s)
@@ -604,14 +651,15 @@ class MainWindow(QMainWindow):
                 s1 = height / self.h
                 s2 = width / self.w
                 s = 1
-                if s1 <=1 and s2<=1:
+                if s1 <= 1 and s2 <= 1:
                     s = max(s1, s2)
                 else:
                     s = min(s1, s2)
                 self.h = height
                 self.w = width
                 for item in self.canvas_widget.item_dict:
-                    self.canvas_widget.item_dict[item].p_list = alg.scale(self.canvas_widget.item_dict[item].p_list, 0, 0, s)
+                    self.canvas_widget.item_dict[item].p_list = alg.scale(self.canvas_widget.item_dict[item].p_list, 0,
+                                                                          0, s)
                 self.scene.setSceneRect(0, 0, width, height)
                 self.canvas_widget.setFixedSize(width, height)
 
@@ -629,6 +677,7 @@ class MainWindow(QMainWindow):
             pixmap = QPixmap()
             pixmap = self.canvas_widget.grab(self.canvas_widget.sceneRect().toRect())
             pixmap.save(filename[0])
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
