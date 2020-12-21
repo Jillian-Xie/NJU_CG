@@ -136,6 +136,16 @@ class MyCanvas(QGraphicsView):
 
     def reset_canvas(self):
 
+        pass
+
+    def clear_canvas(self):
+        for item_id in enumerate(self.item_dict):
+            self.scene().removeItem(self.item_dict[item_id[1]])
+        self.updateScene([self.sceneRect()])
+        self.item_dict = {}
+        self.selected_id = ''
+        self.status = ''
+        self.temp_item = None
 
     def finish_draw(self):
         QApplication.setOverrideCursor(Qt.ArrowCursor)
@@ -148,6 +158,8 @@ class MyCanvas(QGraphicsView):
             self.selected_id = ''
 
     def selection_changed(self, selected):
+        if selected == '':
+            return
         self.main_window.statusBar().showMessage('图元选择： %s' % selected)
         if self.selected_id != '':
             self.item_dict[self.selected_id].selected = False
@@ -396,7 +408,8 @@ class MainWindow(QMainWindow):
         menubar = self.menuBar()
         file_menu = menubar.addMenu('文件')
         set_pen_act = file_menu.addAction('设置画笔')
-        reset_canvas_act = file_menu.addAction('重置画布')
+        reset_canvas_act = file_menu.addAction('调整画布大小')
+        clear_canvas_act = file_menu.addAction('清空画布')
         exit_act = file_menu.addAction('退出')
         draw_menu = menubar.addMenu('绘制')
         line_menu = draw_menu.addMenu('线段')
@@ -433,6 +446,7 @@ class MainWindow(QMainWindow):
         scale_act.triggered.connect(self.scale_action)
         set_pen_act.triggered.connect(self.set_pen_action)
         reset_canvas_act.triggered.connect(self.reset_canvas_action)
+        clear_canvas_act.triggered.connect(self.clear_canvas_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -558,6 +572,13 @@ class MainWindow(QMainWindow):
 
     def reset_canvas_action(self):
         self.canvas_widget.reset_canvas() # TODO
+
+    def clear_canvas_action(self):
+        self.list_widget.clearSelection()
+        self.canvas_widget.clear_selection()
+        self.item_cnt = 0
+        self.list_widget.clear()
+        self.canvas_widget.clear_canvas() # TODO
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
