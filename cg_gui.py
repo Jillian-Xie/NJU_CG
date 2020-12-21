@@ -134,6 +134,9 @@ class MyCanvas(QGraphicsView):
         self.basepoint = [-1, -1]
         return True
 
+    def reset_canvas(self):
+
+
     def finish_draw(self):
         QApplication.setOverrideCursor(Qt.ArrowCursor)
         self.temp_item = None
@@ -429,6 +432,7 @@ class MainWindow(QMainWindow):
         rotate_act.triggered.connect(self.rotate_action)
         scale_act.triggered.connect(self.scale_action)
         set_pen_act.triggered.connect(self.set_pen_action)
+        reset_canvas_act.triggered.connect(self.reset_canvas_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -551,7 +555,9 @@ class MainWindow(QMainWindow):
 
     def set_pen_action(self):
         self.canvas_widget.set_color(str(self.item_cnt - 1))
-        # self.statusBar().showMessage('设置画笔颜色')
+
+    def reset_canvas_action(self):
+        self.canvas_widget.reset_canvas() # TODO
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
