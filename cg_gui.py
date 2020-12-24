@@ -30,6 +30,7 @@ class MyCanvas(QGraphicsView):
         self.temp_item = None
 
         self.basepoint = [-1, -1]
+        self.clippoint = [-1, -1]
         self.core = [-1, -1]
         self.temp_plist = []
 
@@ -117,6 +118,21 @@ class MyCanvas(QGraphicsView):
         self.status = 'curve'
         self.temp_algorithm = algorithm
         self.temp_id = item_id
+
+    def start_clip(self, item_id, algorithm) -> bool:
+        if not self.judge_finish():
+            self.temp_id = str(int(item_id) + 1)
+        if self.selected_id == '' or (not self.item_dict[self.selected_id].item_type == 'line'\
+                and not self.item_dict[self.selected_id].item_type == 'polygon'):
+            self.status = ''
+            self.basepoint = [-1, -1]
+            return False
+        self.status = 'clip'
+        self.temp_algorithm = algorithm
+        self.temp_id = self.selected_id
+        self.temp_item = self.item_dict[self.temp_id]
+        self.basepoint = [-1, -1]
+        return True
 
     def start_translate(self, item_id) -> bool:
         if not self.judge_finish():
@@ -230,6 +246,8 @@ class MyCanvas(QGraphicsView):
                 x_list = [x[0] for x in self.temp_plist]
                 y_list = [y[1] for y in self.temp_plist]
                 self.core = [(min(x_list) + max(x_list)) / 2, (min(y_list) + max(y_list)) / 2]
+        elif self.status == 'clip':
+            self.basepoint = [x, y]
 
         self.updateScene([self.sceneRect()])
         super().mousePressEvent(event)
@@ -305,6 +323,11 @@ class MyCanvas(QGraphicsView):
             s = self.get_multiple(self.basepoint, self.core, [x, y])
             self.temp_item.p_list = alg.scale(self.temp_plist, self.core[0], self.core[1], s)
             self.temp_item.p_list = [[int(p[0]), int(p[1])] for p in self.temp_item.p_list]
+        elif self.status == 'clip':
+            QApplication.setOverrideCursor(Qt.CrossCursor)
+            self.clippoint = [x, y]
+            self.temp_item.clip_plist = [self.basepoint, self.clippoint]
+
         self.updateScene([self.sceneRect()])
         super().mouseMoveEvent(event)
 
@@ -322,8 +345,30 @@ class MyCanvas(QGraphicsView):
             self.finish_draw()
         elif self.status == 'translate' or self.status == 'rotate' or self.status == 'scale':
             QApplication.setOverrideCursor(Qt.ArrowCursor)
-            self.temp_id = ''
             self.basepoint = [-1, -1]
+            self.temp_plist = self.temp_item.p_list[:]
+        elif self.status == 'clip':
+            self.temp_item.clip_plist = None
+            self.clippoint = [x, y]
+            if self.temp_item.item_type == 'line':
+                clipped_list = alg.clip(self.temp_item.p_list,
+                                    min(self.basepoint[0], self.clippoint[0]),
+                                    min(self.basepoint[1], self.clippoint[1]),
+                                    max(self.basepoint[0], self.clippoint[0]),
+                                    max(self.basepoint[1], self.clippoint[1]),
+                                    self.temp_algorithm)
+            elif self.temp_item.item_type == 'polygon':
+                clipped_list = alg.clipPolygon(self.temp_item.p_list,
+                                    min(self.basepoint[0], self.clippoint[0]),
+                                    min(self.basepoint[1], self.clippoint[1]),
+                                    max(self.basepoint[0], self.clippoint[0]),
+                                    max(self.basepoint[1], self.clippoint[1]))
+            if not clipped_list == '':
+                self.temp_item.p_list = clipped_list
+
+            QApplication.setOverrideCursor(Qt.ArrowCursor)
+            self.basepoint = [-1, -1]
+            self.clippoint = [-1, -1]
             self.temp_plist = self.temp_item.p_list[:]
         super().mouseReleaseEvent(event)
 
@@ -355,9 +400,9 @@ class MyItem(QGraphicsItem):
         self.pen.setColor(color)
         self.pen.setWidth(pen_width)
         self.pen.setStyle(Qt.SolidLine)
-        self.pen.setCapStyle(Qt.SquareCap)
-        self.pen_selected.setColor(QColor(0, 0, 255))
+        self.pen_selected.setColor(QColor(220, 20, 60))
         self.pen_selected.setStyle(Qt.DashLine)
+        self.clip_plist = None
 
     def paint(self, painter: QPainter, option: QStyleOptionGraphicsItem, widget: Optional[QWidget] = ...) -> None:
         if self.item_type == 'line':
@@ -374,6 +419,16 @@ class MyItem(QGraphicsItem):
         if self.selected:
             painter.setPen(self.pen_selected)
             painter.drawRect(self.boundingRect())
+        if not self.clip_plist is None:
+            x0, y0 = self.clip_plist[0]
+            x1, y1 = self.clip_plist[1]
+            x = min(x0, x1)
+            y = min(y0, y1)
+            w = max(x0, x1) - x
+            h = max(y0, y1) - y
+            border_pen = QPen(QColor(32,178,170), 2, Qt.DashDotLine, Qt.RoundCap, Qt.RoundJoin)
+            painter.setPen(border_pen)
+            painter.drawRect(QRectF(x - 1, y - 1, w + 2, h + 2))
 
     def boundingRect(self) -> QRectF:
         if self.item_type == 'line':
@@ -486,6 +541,8 @@ class MainWindow(QMainWindow):
         reset_canvas_act.triggered.connect(self.reset_canvas_action)
         clear_canvas_act.triggered.connect(self.clear_canvas_action)
         save_act.triggered.connect(self.save_action)
+        clip_cohen_sutherland_act.triggered.connect(self.clip_cohen_sutherland_action)
+        clip_liang_barsky_act.triggered.connect(self.clip_liang_barsky_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -499,8 +556,13 @@ class MainWindow(QMainWindow):
         self.resize(600, 600)
         self.setWindowTitle('181860112 谢靓静')
 
-        # 设置窗口图标
+        # 设置窗口样式
         self.setWindowIcon(QIcon('../picture/画笔.png'))
+        self.setStyleSheet("background-color: floralwhite;")
+        menubar.setStyleSheet("background-color: wheat;"+"font-weight: bold;" + "border: 2px solid wheat")
+        self.list_widget.setStyleSheet("font-weight: bold;" + "border: 4px inset wheat")
+        self.statusBar().setStyleSheet("background-color: wheat;" + "border: 2px solid wheat")
+        self.canvas_widget.setStyleSheet("background-color: white;"+ "border: 2px solid wheat")
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, "确认", "确定要退出程序吗?",
@@ -593,6 +655,18 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage('您还没有选择要平移的图元！')
         else:
             self.statusBar().showMessage('图元平移')
+
+    def clip_liang_barsky_action(self):
+        if not self.canvas_widget.start_clip(str(self.item_cnt - 1), 'liang_barsky'):
+            self.statusBar().showMessage('请正确选择要裁剪的图元！')
+        else:
+            self.statusBar().showMessage('Liang-Barsky算法图元裁剪')
+
+    def clip_cohen_sutherland_action(self):
+        if not self.canvas_widget.start_clip(str(self.item_cnt - 1), 'cohen_sutherland'):
+            self.statusBar().showMessage('请正确选择要裁剪的图元！')
+        else:
+            self.statusBar().showMessage('Cohen-Sutherland算法图元裁剪')
 
     def rotate_action(self):
         if not self.canvas_widget.start_rotate(str(self.item_cnt - 1)):
