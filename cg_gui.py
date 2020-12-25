@@ -124,8 +124,7 @@ class MyCanvas(QGraphicsView):
     def start_clip(self, item_id, algorithm) -> bool:
         if not self.judge_finish():
             self.temp_id = str(int(item_id) + 1)
-        if self.selected_id == '' or (not self.item_dict[self.selected_id].item_type == 'line'\
-                and not self.item_dict[self.selected_id].item_type == 'polygon'):
+        if self.selected_id == '' or (not self.item_dict[self.selected_id].item_type == 'line'):
             self.status = ''
             self.basepoint = [-1, -1]
             return False
@@ -152,7 +151,7 @@ class MyCanvas(QGraphicsView):
     def start_rotate(self, item_id) -> bool:
         if not self.judge_finish():
             self.temp_id = str(int(item_id) + 1)
-        if self.selected_id == '':
+        if self.selected_id == ''or self.item_dict[self.selected_id].item_type == 'ellipse':
             self.status = ''
             self.basepoint = [-1, -1]
             return False
@@ -538,6 +537,85 @@ class MainWindow(QMainWindow):
         clip_cohen_sutherland_act = clip_menu.addAction('Cohen-Sutherland')
         clip_liang_barsky_act = clip_menu.addAction('Liang-Barsky')
 
+        # 设置工具栏
+        toolBar = QToolBar()
+        self.addToolBar(toolBar)
+        # 添加图形按钮
+        clear = QAction(QIcon('images\\清空.png'), "清空画布", toolBar)
+        clear.setStatusTip("清空画布")
+        clear.triggered.connect(self.clear_canvas_action)
+        toolBar.addAction(clear)
+
+        save = QAction(QIcon('images\\保存.png'), "保存画布", toolBar)
+        save.setStatusTip("保存画布")
+        save.triggered.connect(self.save_action)
+        toolBar.addAction(save)
+
+        choose = QAction(QIcon('images\\鼠标选择.png'), "鼠标选择图元", toolBar)
+        choose.setStatusTip("鼠标选择图元")
+        choose.triggered.connect(self.select_action)
+        toolBar.addAction(choose)
+
+        color = QAction(QIcon('images\\颜色.png'), "改变画笔颜色", toolBar)
+        color.setStatusTip("改变画笔颜色")
+        color.triggered.connect(self.set_pen_action)
+        toolBar.addAction(color)
+
+        thin = QAction(QIcon('images\\画笔粗细_1.png'), "细笔画", toolBar)
+        thin.setStatusTip("细笔画")
+        thin.triggered.connect(self.set_thin_action)
+        toolBar.addAction(thin)
+
+        mid = QAction(QIcon('images\\画笔粗细_3.png'), "中等笔画", toolBar)
+        mid.setStatusTip("中等笔画")
+        mid.triggered.connect(self.set_mid_action)
+        toolBar.addAction(mid)
+
+        thick = QAction(QIcon('images\\画笔粗细_4.png'), "粗笔画", toolBar)
+        thick.setStatusTip("粗笔画")
+        thick.triggered.connect(self.set_thick_action)
+        toolBar.addAction(thick)
+
+        line = QAction(QIcon('images\\直线.png'), "直线", toolBar)
+        line.setStatusTip("直线")
+        line.triggered.connect(self.line_dda_action)
+        toolBar.addAction(line)
+
+        polygon = QAction(QIcon('images\\多边形.png'), "多边形", toolBar)
+        polygon.setStatusTip("多边形")
+        polygon.triggered.connect(self.polygon_bresenham_action)
+        toolBar.addAction(polygon)
+
+        ellipse = QAction(QIcon('images\\椭圆.png'), "椭圆", toolBar)
+        ellipse.setStatusTip("椭圆")
+        ellipse.triggered.connect(self.ellipse_action)
+        toolBar.addAction(ellipse)
+
+        curve = QAction(QIcon('images\\曲线.png'), "曲线", toolBar)
+        curve.setStatusTip("曲线")
+        curve.triggered.connect(self.curve_Bezier_action)
+        toolBar.addAction(curve)
+
+        translate = QAction(QIcon('images\\平移.png'), "平移", toolBar)
+        translate.setStatusTip("平移")
+        translate.triggered.connect(self.translate_action)
+        toolBar.addAction(translate)
+
+        rotate = QAction(QIcon('images\\旋转.png'), "旋转", toolBar)
+        rotate.setStatusTip("旋转")
+        rotate.triggered.connect(self.rotate_action)
+        toolBar.addAction(rotate)
+
+        scale = QAction(QIcon('images\\缩放.png'), "缩放", toolBar)
+        scale.setStatusTip("缩放")
+        scale.triggered.connect(self.scale_action)
+        toolBar.addAction(scale)
+
+        clip = QAction(QIcon('images\\裁剪.png'), "裁剪", toolBar)
+        clip.setStatusTip("裁剪")
+        clip.triggered.connect(self.clip_liang_barsky_action)
+        toolBar.addAction(clip)
+
         # 连接信号和槽函数
         exit_act.triggered.connect(qApp.quit)
         line_naive_act.triggered.connect(self.line_naive_action)
@@ -688,7 +766,7 @@ class MainWindow(QMainWindow):
 
     def rotate_action(self):
         if not self.canvas_widget.start_rotate(str(self.item_cnt - 1)):
-            self.statusBar().showMessage('您还没有选择要旋转的图元！')
+            self.statusBar().showMessage('请正确选择要旋转的图元！')
         else:
             self.statusBar().showMessage('图元旋转')
 
