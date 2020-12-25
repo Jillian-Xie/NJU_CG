@@ -8,6 +8,8 @@ from typing import Optional
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from PyQt5 import QtGui
+
 
 
 class MyCanvas(QGraphicsView):
@@ -191,6 +193,12 @@ class MyCanvas(QGraphicsView):
             self.item_dict[self.selected_id].selected = False
             self.selected_id = ''
 
+    def start_select(self, item_id):
+        if not self.judge_finish():
+            self.temp_id = str(int(item_id) + 1)
+        self.status = 'selection'
+        QApplication.setOverrideCursor(Qt.PointingHandCursor)
+
     def selection_changed(self, selected):
         if self.main_window.item_cnt == 0:
             return
@@ -204,7 +212,8 @@ class MyCanvas(QGraphicsView):
         self.item_dict[selected].update()
         self.temp_item = self.item_dict[selected]
         self.updateScene([self.sceneRect()])
-        self.status = ''
+        if not self.status == 'selection':
+            self.status = ''
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         pos = self.mapToScene(event.localPos().toPoint())
@@ -248,7 +257,10 @@ class MyCanvas(QGraphicsView):
                 self.core = [(min(x_list) + max(x_list)) / 2, (min(y_list) + max(y_list)) / 2]
         elif self.status == 'clip':
             self.basepoint = [x, y]
-
+        elif self.status == 'selection':
+            item = self.scene().itemAt(pos, QtGui.QTransform())
+            if item is not None:
+                self.selection_changed(item.id)
         self.updateScene([self.sceneRect()])
         super().mousePressEvent(event)
 
@@ -521,6 +533,7 @@ class MainWindow(QMainWindow):
         translate_act = edit_menu.addAction('平移')
         rotate_act = edit_menu.addAction('旋转')
         scale_act = edit_menu.addAction('缩放')
+        select_act = menubar.addAction('鼠标点选')
         clip_menu = edit_menu.addMenu('裁剪')
         clip_cohen_sutherland_act = clip_menu.addAction('Cohen-Sutherland')
         clip_liang_barsky_act = clip_menu.addAction('Liang-Barsky')
@@ -547,6 +560,7 @@ class MainWindow(QMainWindow):
         save_act.triggered.connect(self.save_action)
         clip_cohen_sutherland_act.triggered.connect(self.clip_cohen_sutherland_action)
         clip_liang_barsky_act.triggered.connect(self.clip_liang_barsky_action)
+        select_act.triggered.connect(self.select_action)
         self.list_widget.currentTextChanged.connect(self.canvas_widget.selection_changed)
 
         # 设置主窗口的布局
@@ -756,6 +770,8 @@ class MainWindow(QMainWindow):
             pixmap = self.canvas_widget.grab(self.canvas_widget.sceneRect().toRect())
             pixmap.save(filename[0])
 
+    def select_action(self):
+        self.canvas_widget.start_select(str(self.item_cnt - 1))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

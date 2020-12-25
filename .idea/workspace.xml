@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cg_algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_algorithms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cg_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_cli.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cg_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input_path.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input_path.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3762">
-              <caret line="318" column="33" lean-forward="true" selection-start-line="318" selection-start-column="33" selection-end-line="318" selection-end-column="33" />
+            <state relative-caret-position="167">
+              <caret line="199" column="60" selection-start-line="199" selection-start-column="60" selection-end-line="199" selection-end-column="60" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
@@ -70,8 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find># self.temp_id = ''</find>
-      <find>item_pixels = alg.draw_line(self.p_list, self.algorithm)</find>
       <find>painter</find>
       <find>paint</find>
       <find>QRectF</find>
@@ -100,6 +94,8 @@
       <find>temp_algorithm</find>
       <find>B_spline</find>
       <find>double</find>
+      <find>'selection'</find>
+      <find>QtGui</find>
     </findStrings>
     <replaceStrings>
       <replace>dx2</replace>
@@ -131,10 +127,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-3" />
-    <option name="y" value="1" />
-    <option name="width" value="1003" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="931" />
+    <option name="width" value="999" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -288,30 +283,30 @@
       <workItem from="1608640973260" duration="1209000" />
       <workItem from="1608739174786" duration="3007000" />
       <workItem from="1608775723061" duration="29848000" />
-      <workItem from="1608893079618" duration="9668000" />
+      <workItem from="1608893079618" duration="10914000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256658000" />
+    <option name="totallyTimeSpent" value="257904000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="745" y="0" width="799" height="832" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28016084" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.5641026" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.203966" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20571429" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.33714285" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32761088" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.42857143" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.29036826" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016892" side_tool="true" weight="0.397482" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -382,12 +377,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>124</line>
+          <line>126</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>669</line>
+          <line>683</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -406,7 +401,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="gui Coverage Results" MODIFIED="1608902605585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="gui Coverage Results" MODIFIED="1608905030555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test$cli.coverage" NAME="cli Coverage Results" MODIFIED="1608900858079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
@@ -572,8 +567,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cg_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3762">
-          <caret line="318" column="33" lean-forward="true" selection-start-line="318" selection-start-column="33" selection-end-line="318" selection-end-column="33" />
+        <state relative-caret-position="167">
+          <caret line="199" column="60" selection-start-line="199" selection-start-column="60" selection-end-line="199" selection-end-column="60" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
           </folding>
