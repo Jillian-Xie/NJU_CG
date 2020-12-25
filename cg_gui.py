@@ -220,8 +220,8 @@ class MyCanvas(QGraphicsView):
             else:
                 self.temp_item.p_list.append([x, y])
         elif self.status == 'ellipse':
-            self.temp_item = MyItem(self.pen_width, self.color, self.temp_id, self.status, [[x - 1, y + 1], [x + 1, y - 1]],
-                                    self.temp_algorithm)
+            self.temp_item = MyItem(self.pen_width, self.color, self.temp_id, self.status,
+                                    [[x - 1, y + 1], [x + 1, y - 1]],self.temp_algorithm)
             self.scene().addItem(self.temp_item)
         elif self.status == 'curve':
             if self.temp_item is None:
@@ -298,6 +298,7 @@ class MyCanvas(QGraphicsView):
         y = int(pos.y())
         if self.status == 'line':
             self.temp_item.p_list[1] = [x, y]
+            print([x, y])
         elif self.status == 'polygon':
             self.temp_item.p_list[-1] = [x, y]
         elif self.status == 'curve':
@@ -351,6 +352,7 @@ class MyCanvas(QGraphicsView):
             self.temp_item.clip_plist = None
             self.clippoint = [x, y]
             if self.temp_item.item_type == 'line':
+                print([x, y])
                 clipped_list = alg.clip(self.temp_item.p_list,
                                     min(self.basepoint[0], self.clippoint[0]),
                                     min(self.basepoint[1], self.clippoint[1]),
@@ -370,6 +372,8 @@ class MyCanvas(QGraphicsView):
             self.basepoint = [-1, -1]
             self.clippoint = [-1, -1]
             self.temp_plist = self.temp_item.p_list[:]
+            self.updateScene([self.sceneRect()])
+
         super().mouseReleaseEvent(event)
 
 
@@ -511,7 +515,7 @@ class MainWindow(QMainWindow):
         polygon_bresenham_act = polygon_menu.addAction('Bresenham')
         ellipse_act = draw_menu.addAction('椭圆')
         curve_menu = draw_menu.addMenu('曲线')
-        curve_bezier_act = curve_menu.addAction('Bezier')
+        curve_Bezier_act = curve_menu.addAction('Bezier')
         curve_b_spline_act = curve_menu.addAction('B-spline')
         edit_menu = menubar.addMenu('编辑')
         translate_act = edit_menu.addAction('平移')
@@ -529,7 +533,7 @@ class MainWindow(QMainWindow):
         polygon_dda_act.triggered.connect(self.polygon_dda_action)
         polygon_bresenham_act.triggered.connect(self.polygon_bresenham_action)
         ellipse_act.triggered.connect(self.ellipse_action)
-        curve_bezier_act.triggered.connect(self.curve_bezier_action)
+        curve_Bezier_act.triggered.connect(self.curve_Bezier_action)
         curve_b_spline_act.triggered.connect(self.curve_b_spline_action)
         translate_act.triggered.connect(self.translate_action)
         rotate_act.triggered.connect(self.rotate_action)
@@ -560,12 +564,12 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon('../picture/画笔.png'))
         self.setStyleSheet("background-color: floralwhite;")
         menubar.setStyleSheet("background-color: wheat;"+"font-weight: bold;" + "border: 2px solid wheat")
-        self.list_widget.setStyleSheet("font-weight: bold;" + "border: 4px inset wheat")
+        self.list_widget.setStyleSheet("font-weight: bold;" + "border: 4px inset wheat;"+"background-color: antiquewhite;")
         self.statusBar().setStyleSheet("background-color: wheat;" + "border: 2px solid wheat")
         self.canvas_widget.setStyleSheet("background-color: white;"+ "border: 2px solid wheat")
 
     def closeEvent(self, event):
-        reply = QMessageBox.question(self, "确认", "确定要退出程序吗?",
+        reply = QMessageBox.question(self, "退出确认", "确定要退出程序吗?",
                                      QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
             event.accept()
@@ -623,21 +627,21 @@ class MainWindow(QMainWindow):
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
-    def curve_bezier_action(self):
+    def curve_Bezier_action(self):
         if self.item_cnt == 0:
-            self.canvas_widget.start_draw_curve('bezier', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+            self.canvas_widget.start_draw_curve('Bezier', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_curve('bezier', str(self.item_cnt - 1))
-        self.statusBar().showMessage('bezier算法绘制曲线')
+            self.canvas_widget.start_draw_curve('Bezier', str(self.item_cnt - 1))
+        self.statusBar().showMessage('Bezier算法绘制曲线')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
     def curve_b_spline_action(self):
         if self.item_cnt == 0:
-            self.canvas_widget.start_draw_curve('b_spline', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
+            self.canvas_widget.start_draw_curve('B-spline', self.get_id())  # 这里发现一个问题，每次调用get_id时id都会递增，导致切换菜单选项时图元编号跳跃
         else:
-            self.canvas_widget.start_draw_curve('b_spline', str(self.item_cnt - 1))
-        self.statusBar().showMessage('b_spline算法绘制曲线')
+            self.canvas_widget.start_draw_curve('B-spline', str(self.item_cnt - 1))
+        self.statusBar().showMessage('B-spline算法绘制曲线')
         self.list_widget.clearSelection()
         self.canvas_widget.clear_selection()
 
@@ -657,13 +661,13 @@ class MainWindow(QMainWindow):
             self.statusBar().showMessage('图元平移')
 
     def clip_liang_barsky_action(self):
-        if not self.canvas_widget.start_clip(str(self.item_cnt - 1), 'liang_barsky'):
+        if not self.canvas_widget.start_clip(str(self.item_cnt - 1), 'Liang-Barsky'):
             self.statusBar().showMessage('请正确选择要裁剪的图元！')
         else:
             self.statusBar().showMessage('Liang-Barsky算法图元裁剪')
 
     def clip_cohen_sutherland_action(self):
-        if not self.canvas_widget.start_clip(str(self.item_cnt - 1), 'cohen_sutherland'):
+        if not self.canvas_widget.start_clip(str(self.item_cnt - 1), 'Cohen-Sutherland'):
             self.statusBar().showMessage('请正确选择要裁剪的图元！')
         else:
             self.statusBar().showMessage('Cohen-Sutherland算法图元裁剪')
