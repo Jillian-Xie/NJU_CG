@@ -4,6 +4,7 @@
 import sys
 import cg_algorithms as alg
 import math
+import copy
 from typing import Optional
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -100,7 +101,7 @@ class MyCanvas(QGraphicsView):
     def start_draw_polygon(self, algorithm, item_id):
         if not self.judge_finish():
             item_id = str(int(item_id) + 1)
-        if self.status == '' or self.status == 'translate' or self.status == 'rotate' or self.status == 'scale' or self.status == 'clip':
+        if self.status == 'selection' or self.status == '' or self.status == 'translate' or self.status == 'rotate' or self.status == 'scale' or self.status == 'clip':
             self.temp_item = None
         self.status = 'polygon'
         self.temp_algorithm = algorithm
@@ -115,7 +116,7 @@ class MyCanvas(QGraphicsView):
     def start_draw_curve(self, algorithm, item_id):
         if not self.judge_finish():
             item_id = str(int(item_id) + 1)
-        if self.status == '' or self.status == 'translate' or self.status == 'rotate' or self.status == 'scale' or self.status == 'clip':
+        if self.status == 'selection' or self.status == '' or self.status == 'translate' or self.status == 'rotate' or self.status == 'scale' or self.status == 'clip':
             self.temp_item = None
         self.status = 'curve'
         self.temp_algorithm = algorithm
@@ -177,6 +178,7 @@ class MyCanvas(QGraphicsView):
     def clear_canvas(self):
         self.scene().clear()
         self.updateScene([self.sceneRect()])
+        self.item_dict.clear()
         self.item_dict = {}
         self.selected_id = ''
         self.status = ''
@@ -318,12 +320,12 @@ class MyCanvas(QGraphicsView):
             self.temp_item.p_list[1] = [x, y]
         elif self.status == 'translate':
             QApplication.setOverrideCursor(Qt.SizeAllCursor)
-            self.temp_item.p_list = alg.translate(self.temp_plist, x - self.basepoint[0], y - self.basepoint[1])
+            self.temp_item.p_list = copy.deepcopy(alg.translate(self.temp_plist, x - self.basepoint[0], y - self.basepoint[1]))
             self.temp_item.p_list = [[int(p[0]), int(p[1])] for p in self.temp_item.p_list]
         elif self.status == 'rotate':
             QApplication.setOverrideCursor(Qt.ClosedHandCursor)
             r = self.get_angle(self.basepoint, self.core, [x, y])
-            self.temp_item.p_list = alg.rotate(self.temp_plist, self.core[0], self.core[1], r)
+            self.temp_item.p_list = copy.deepcopy(alg.rotate(self.temp_plist, self.core[0], self.core[1], r))
             self.temp_item.p_list = [[int(p[0]), int(p[1])] for p in self.temp_item.p_list]
         elif self.status == 'scale':
             dx = x - self.core[0]
@@ -333,7 +335,7 @@ class MyCanvas(QGraphicsView):
             else:
                 QApplication.setOverrideCursor(Qt.SizeBDiagCursor)
             s = self.get_multiple(self.basepoint, self.core, [x, y])
-            self.temp_item.p_list = alg.scale(self.temp_plist, self.core[0], self.core[1], s)
+            self.temp_item.p_list = copy.deepcopy(alg.scale(self.temp_plist, self.core[0], self.core[1], s))
             self.temp_item.p_list = [[int(p[0]), int(p[1])] for p in self.temp_item.p_list]
         elif self.status == 'clip':
             QApplication.setOverrideCursor(Qt.CrossCursor)
@@ -364,18 +366,12 @@ class MyCanvas(QGraphicsView):
             self.clippoint = [x, y]
             if self.temp_item.item_type == 'line':
                 print([x, y])
-                clipped_list = alg.clip(self.temp_item.p_list,
+                clipped_list = copy.deepcopy(alg.clip(self.temp_item.p_list,
                                     min(self.basepoint[0], self.clippoint[0]),
                                     min(self.basepoint[1], self.clippoint[1]),
                                     max(self.basepoint[0], self.clippoint[0]),
                                     max(self.basepoint[1], self.clippoint[1]),
-                                    self.temp_algorithm)
-            elif self.temp_item.item_type == 'polygon':
-                clipped_list = alg.clipPolygon(self.temp_item.p_list,
-                                    min(self.basepoint[0], self.clippoint[0]),
-                                    min(self.basepoint[1], self.clippoint[1]),
-                                    max(self.basepoint[0], self.clippoint[0]),
-                                    max(self.basepoint[1], self.clippoint[1]))
+                                    self.temp_algorithm))
             if not clipped_list == '':
                 self.temp_item.p_list = clipped_list
 
@@ -541,77 +537,77 @@ class MainWindow(QMainWindow):
         toolBar = QToolBar()
         self.addToolBar(toolBar)
         # 添加图形按钮
-        clear = QAction(QIcon('images\\清空.png'), "清空画布", toolBar)
+        clear = QAction(QIcon('../picture/清空.png'), "清空画布", toolBar)
         clear.setStatusTip("清空画布")
         clear.triggered.connect(self.clear_canvas_action)
         toolBar.addAction(clear)
 
-        save = QAction(QIcon('images\\保存.png'), "保存画布", toolBar)
+        save = QAction(QIcon('../picture/保存.png'), "保存画布", toolBar)
         save.setStatusTip("保存画布")
         save.triggered.connect(self.save_action)
         toolBar.addAction(save)
 
-        choose = QAction(QIcon('images\\鼠标选择.png'), "鼠标选择图元", toolBar)
+        choose = QAction(QIcon('../picture/鼠标选择.png'), "鼠标选择图元", toolBar)
         choose.setStatusTip("鼠标选择图元")
         choose.triggered.connect(self.select_action)
         toolBar.addAction(choose)
 
-        color = QAction(QIcon('images\\颜色.png'), "改变画笔颜色", toolBar)
+        color = QAction(QIcon('../picture/颜色.png'), "改变画笔颜色", toolBar)
         color.setStatusTip("改变画笔颜色")
         color.triggered.connect(self.set_pen_action)
         toolBar.addAction(color)
 
-        thin = QAction(QIcon('images\\画笔粗细_1.png'), "细笔画", toolBar)
+        thin = QAction(QIcon('../picture/画笔粗细_1.png'), "细笔画", toolBar)
         thin.setStatusTip("细笔画")
         thin.triggered.connect(self.set_thin_action)
         toolBar.addAction(thin)
 
-        mid = QAction(QIcon('images\\画笔粗细_3.png'), "中等笔画", toolBar)
+        mid = QAction(QIcon('../picture/画笔粗细_3.png'), "中等笔画", toolBar)
         mid.setStatusTip("中等笔画")
         mid.triggered.connect(self.set_mid_action)
         toolBar.addAction(mid)
 
-        thick = QAction(QIcon('images\\画笔粗细_4.png'), "粗笔画", toolBar)
+        thick = QAction(QIcon('../picture/画笔粗细_4.png'), "粗笔画", toolBar)
         thick.setStatusTip("粗笔画")
         thick.triggered.connect(self.set_thick_action)
         toolBar.addAction(thick)
 
-        line = QAction(QIcon('images\\直线.png'), "直线", toolBar)
+        line = QAction(QIcon('../picture/直线.png'), "直线", toolBar)
         line.setStatusTip("直线")
         line.triggered.connect(self.line_dda_action)
         toolBar.addAction(line)
 
-        polygon = QAction(QIcon('images\\多边形.png'), "多边形", toolBar)
+        polygon = QAction(QIcon('../picture/多边形.png'), "多边形", toolBar)
         polygon.setStatusTip("多边形")
         polygon.triggered.connect(self.polygon_bresenham_action)
         toolBar.addAction(polygon)
 
-        ellipse = QAction(QIcon('images\\椭圆.png'), "椭圆", toolBar)
+        ellipse = QAction(QIcon('../picture/椭圆.png'), "椭圆", toolBar)
         ellipse.setStatusTip("椭圆")
         ellipse.triggered.connect(self.ellipse_action)
         toolBar.addAction(ellipse)
 
-        curve = QAction(QIcon('images\\曲线.png'), "曲线", toolBar)
+        curve = QAction(QIcon('../picture/曲线.png'), "曲线", toolBar)
         curve.setStatusTip("曲线")
         curve.triggered.connect(self.curve_Bezier_action)
         toolBar.addAction(curve)
 
-        translate = QAction(QIcon('images\\平移.png'), "平移", toolBar)
+        translate = QAction(QIcon('../picture/平移.png'), "平移", toolBar)
         translate.setStatusTip("平移")
         translate.triggered.connect(self.translate_action)
         toolBar.addAction(translate)
 
-        rotate = QAction(QIcon('images\\旋转.png'), "旋转", toolBar)
+        rotate = QAction(QIcon('../picture/旋转.png'), "旋转", toolBar)
         rotate.setStatusTip("旋转")
         rotate.triggered.connect(self.rotate_action)
         toolBar.addAction(rotate)
 
-        scale = QAction(QIcon('images\\缩放.png'), "缩放", toolBar)
+        scale = QAction(QIcon('../picture/缩放.png'), "缩放", toolBar)
         scale.setStatusTip("缩放")
         scale.triggered.connect(self.scale_action)
         toolBar.addAction(scale)
 
-        clip = QAction(QIcon('images\\裁剪.png'), "裁剪", toolBar)
+        clip = QAction(QIcon('../picture/裁剪.png'), "裁剪", toolBar)
         clip.setStatusTip("裁剪")
         clip.triggered.connect(self.clip_liang_barsky_action)
         toolBar.addAction(clip)
@@ -828,8 +824,8 @@ class MainWindow(QMainWindow):
                 self.h = height
                 self.w = width
                 for item in self.canvas_widget.item_dict:
-                    self.canvas_widget.item_dict[item].p_list = alg.scale(self.canvas_widget.item_dict[item].p_list, 0,
-                                                                          0, s)
+                    self.canvas_widget.item_dict[item].p_list = copy.deepcopy(alg.scale(self.canvas_widget.item_dict[item].p_list, 0,
+                                                                          0, s))
                 self.scene.setSceneRect(0, 0, width, height)
                 self.canvas_widget.setFixedSize(width, height)
 

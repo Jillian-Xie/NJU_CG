@@ -2,23 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/images/保存.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/多边形.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/平移.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/旋转.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/曲线.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/椭圆.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/清空.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/画笔粗细_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/画笔粗细_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/画笔粗细_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/直线.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/缩放.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/裁剪.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/颜色.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/鼠标选择.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cg_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/保存.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/多边形.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/平移.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/旋转.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/曲线.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/椭圆.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/清空.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/画笔粗细_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/画笔粗细_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/画笔粗细_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/直线.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/缩放.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/裁剪.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/颜色.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/鼠标选择.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +31,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="345" column="8" selection-start-line="345" selection-start-column="4" selection-end-line="345" selection-end-column="8" />
+            <state relative-caret-position="3382">
+              <caret line="319" lean-forward="true" selection-start-line="319" selection-end-line="319" />
+              <folding>
+                <element signature="e#4067#4477#0" />
+                <element signature="e#4524#4938#0" />
+                <element signature="e#4971#6415#0" />
+                <element signature="e#7117#8403#0" />
+                <element signature="e#8441#8737#0" />
+                <element signature="e#8773#9340#0" />
+                <element signature="e#9375#9830#0" />
+                <element signature="e#9883#10098#0" />
+                <element signature="e#10133#10232#0" />
+                <element signature="e#10266#10361#0" />
+                <element signature="e#10392#10445#0" />
+                <element signature="e#10509#12759#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cg_cli.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1083">
-              <caret line="102" selection-start-line="102" selection-end-line="102" />
+            <state relative-caret-position="418">
+              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
@@ -52,7 +66,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/input_path.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
+            <state relative-caret-position="741">
               <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
             </state>
           </provider>
@@ -61,11 +75,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cg_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="154" column="90" selection-start-line="154" selection-start-column="90" selection-end-line="154" selection-end-column="90" />
+            <state relative-caret-position="1919">
+              <caret line="109" column="42" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
               <folding>
                 <element signature="e#46#56#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="97090">
+              <caret line="5117" column="37" selection-start-line="5117" selection-start-column="22" selection-end-line="5117" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -81,13 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>alg.</find>
-      <find>tran</find>
-      <find>list</find>
-      <find>.clear()</find>
-      <find>changed</find>
-      <find>set_canvas</find>
-      <find>dialog</find>
       <find>Paint</find>
       <find>ColorD</find>
       <find>cohen_sutherland</find>
@@ -102,15 +118,22 @@
       <find>double</find>
       <find>'selection'</find>
       <find>QtGui</find>
-      <find>clear</find>
       <find>color</find>
       <find>thin</find>
       <find>mid</find>
       <find>curve</find>
-      <find>translate</find>
       <find>rotate</find>
       <find>scale</find>
       <find>clip</find>
+      <find>tool</find>
+      <find>selection'</find>
+      <find>translate</find>
+      <find>trans</find>
+      <find>alg.tra</find>
+      <find>alg.</find>
+      <find>Icon</find>
+      <find>images\\</find>
+      <find>clear</find>
     </findStrings>
     <replaceStrings>
       <replace>dx2</replace>
@@ -139,6 +162,7 @@
       <replace>rotate</replace>
       <replace>scale</replace>
       <replace>clip</replace>
+      <replace>../picture/</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -152,14 +176,15 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/input_path.txt" />
         <option value="$PROJECT_DIR$/cg_cli.py" />
-        <option value="$PROJECT_DIR$/cg_algorithms.py" />
         <option value="$PROJECT_DIR$/cg_gui.py" />
+        <option value="$PROJECT_DIR$/cg_algorithms.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="878" />
-    <option name="width" value="1052" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="885" />
+    <option name="y" value="2" />
+    <option name="width" value="1055" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -170,6 +195,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,19 +206,18 @@
             <path>
               <item name="test" type="b2602c69:ProjectViewProjectNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="output" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled3" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -328,29 +353,45 @@
       <workItem from="1608640973260" duration="1209000" />
       <workItem from="1608739174786" duration="3007000" />
       <workItem from="1608775723061" duration="29848000" />
-      <workItem from="1608893079618" duration="16162000" />
+      <workItem from="1608893079618" duration="16384000" />
+      <workItem from="1608944457128" duration="16897000" />
+      <workItem from="1608996318361" duration="1200000" />
+      <workItem from="1610366557794" duration="259000" />
+      <workItem from="1610380003567" duration="599000" />
+      <workItem from="1610417929114" duration="3756000" />
+      <workItem from="1611885612787" duration="632000" />
+      <workItem from="1611895494473" duration="2854000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="263152000" />
+    <option name="totallyTimeSpent" value="289571000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="703" y="0" width="841" height="832" extended-state="0" />
+    <frame x="708" y="2" width="844" height="832" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20306513" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1259542" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.47285715" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.20714286" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.33714285" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32761088" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32714286" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.29" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5016892" side_tool="true" weight="0.397482" />
       <window_info anchor="bottom" id="Python Console" order="11" />
@@ -422,12 +463,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>126</line>
+          <line>127</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cg_gui.py</url>
-          <line>762</line>
+          <line>757</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -446,6 +487,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/test$gui.coverage" NAME="gui Coverage Results" MODIFIED="1608997185392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="gui Coverage Results" MODIFIED="1608914891954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test$cli.coverage" NAME="cli Coverage Results" MODIFIED="1608900858079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -536,13 +578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="734" column="9" lean-forward="true" selection-start-line="734" selection-start-column="8" selection-end-line="734" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Anaconda3/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
@@ -567,23 +602,6 @@
     <entry file="file://$PROJECT_DIR$/output/4.bmp">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/input_path.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cg_cli.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-          <folding>
-            <element signature="e#46#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/1.bmp">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -596,27 +614,59 @@
     <entry file="file://$PROJECT_DIR$/output/5.bmp">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="3382">
+          <caret line="319" lean-forward="true" selection-start-line="319" selection-end-line="319" />
+          <folding>
+            <element signature="e#4067#4477#0" />
+            <element signature="e#4524#4938#0" />
+            <element signature="e#4971#6415#0" />
+            <element signature="e#7117#8403#0" />
+            <element signature="e#8441#8737#0" />
+            <element signature="e#8773#9340#0" />
+            <element signature="e#9375#9830#0" />
+            <element signature="e#9883#10098#0" />
+            <element signature="e#10133#10232#0" />
+            <element signature="e#10266#10361#0" />
+            <element signature="e#10392#10445#0" />
+            <element signature="e#10509#12759#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cg_gui.py">
+    <entry file="file://$PROJECT_DIR$/cg_cli.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="154" column="90" selection-start-line="154" selection-start-column="90" selection-end-line="154" selection-end-column="90" />
+        <state relative-caret-position="418">
+          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
           <folding>
             <element signature="e#46#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
+    <entry file="file://$PROJECT_DIR$/input_path.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="345" column="8" selection-start-line="345" selection-start-column="4" selection-end-line="345" selection-end-column="8" />
+        <state relative-caret-position="741">
+          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cg_gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1919">
+          <caret line="109" column="42" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
+          <folding>
+            <element signature="e#46#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97090">
+          <caret line="5117" column="37" selection-start-line="5117" selection-start-column="22" selection-end-line="5117" selection-end-column="37" />
         </state>
       </provider>
     </entry>
