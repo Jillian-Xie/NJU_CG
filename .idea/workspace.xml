@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cg_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/cg_gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/保存.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/多边形.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/平移.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/旋转.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/曲线.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/椭圆.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/清空.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/画笔粗细_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/画笔粗细_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/画笔粗细_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/直线.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/缩放.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/裁剪.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/颜色.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/鼠标选择.png" beforeDir="false" />
-    </list>
+    <list default="true" id="1b5e0633-2adc-4b26-8a6b-9ba2bbe8a497" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3382">
-              <caret line="319" lean-forward="true" selection-start-line="319" selection-end-line="319" />
+            <state relative-caret-position="285">
+              <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
               <folding>
                 <element signature="e#4067#4477#0" />
                 <element signature="e#4524#4938#0" />
@@ -181,9 +163,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="885" />
-    <option name="y" value="2" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1008" />
+    <option name="y" value="7" />
     <option name="width" value="1055" />
     <option name="height" value="1040" />
   </component>
@@ -360,12 +342,12 @@
       <workItem from="1610380003567" duration="599000" />
       <workItem from="1610417929114" duration="3756000" />
       <workItem from="1611885612787" duration="632000" />
-      <workItem from="1611895494473" duration="2854000" />
+      <workItem from="1611895494473" duration="3040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289571000" />
+    <option name="totallyTimeSpent" value="289757000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -385,7 +367,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.20714286" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17857143" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983108" weight="0.33714285" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -487,7 +469,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test$gui.coverage" NAME="gui Coverage Results" MODIFIED="1608997185392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$gui.coverage" NAME="gui Coverage Results" MODIFIED="1611904234039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test$Python3_8.coverage" NAME="gui Coverage Results" MODIFIED="1608914891954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test$cli.coverage" NAME="cli Coverage Results" MODIFIED="1608900858079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -617,8 +599,8 @@
     <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/cg_algorithms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3382">
-          <caret line="319" lean-forward="true" selection-start-line="319" selection-end-line="319" />
+        <state relative-caret-position="285">
+          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
           <folding>
             <element signature="e#4067#4477#0" />
             <element signature="e#4524#4938#0" />
